@@ -110,18 +110,18 @@ h3 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.0313rem
 .header-inner { display: flex; align-items: center; gap: .75rem; height: 64px; }
 .logo { font-family: var(--font-display); font-size: 1.375rem; text-decoration: none; margin-right: auto; }
 .logo b { color: var(--accent); font-weight: 400; }
-.nav { display: none; gap: 1.75rem; margin-right: 1rem; }
+.nav { display: none; gap: 1.5rem; margin-right: .75rem; }
 .nav a { text-decoration: none; font-weight: 500; font-size: .9063rem; color: var(--muted); transition: color .15s ease; }
 .nav a:hover { color: var(--text); }
 .header-wa { display: none; align-items: center; gap: .4rem; text-decoration: none; font-weight: 600; font-size: .875rem; margin-right: .5rem; }
 .header-wa .wa-icon { color: var(--wa); }
 .header-wa:hover { color: var(--accent); }
 .nav-toggle { display: inline-flex; background: none; border: 0; color: var(--text); padding: .5rem; cursor: pointer; }
-@media (max-width: 959px) {
+@media (max-width: 1079px) {
     .nav.is-open { display: flex; flex-direction: column; gap: 0; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--accent-line); padding: .5rem var(--pad) 1rem; margin: 0; }
     .nav.is-open a { padding: .8rem 0; border-bottom: 1px solid var(--line); font-size: 1rem; color: var(--text); }
 }
-@media (min-width: 960px) {
+@media (min-width: 1080px) {
     .nav { display: flex; }
     .header-wa { display: inline-flex; }
     .nav-toggle { display: none; }
@@ -141,7 +141,17 @@ h3 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.0313rem
 .hero-inner { display: grid; gap: 2.5rem; align-items: center; padding-bottom: 1rem; }
 @media (min-width: 1000px) { .hero-inner { grid-template-columns: 1.1fr 1fr; gap: 3rem; } }
 .hero-copy > .label::before, .vs-card .label::before, .footer-grid .label::before { content: "/"; color: var(--accent); margin-right: .45em; }
-.hero h1 { margin-top: 1rem; }
+.hero h1 { margin-top: 1.125rem; }
+
+/* Znaczek „Odpowiadam w ciągu 24 h” */
+.badge-24 { display: inline-flex; align-items: center; gap: .55rem; padding: .45rem .9rem .45rem .75rem; border-radius: 999px; font-size: .8438rem; font-weight: 700; color: var(--text); background: linear-gradient(90deg, rgba(37, 211, 102, .16), rgba(109, 220, 255, .1)); border: 1px solid rgba(37, 211, 102, .45); box-shadow: 0 0 24px -8px rgba(37, 211, 102, .6); }
+.badge-24 i { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 8px var(--wa); flex: none; }
+.badge-24 i::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid var(--wa); opacity: 0; }
+.badge-24-sm { margin-top: .5rem; padding: .3rem .7rem .3rem .6rem; font-size: .75rem; }
+@media (prefers-reduced-motion: no-preference) {
+    .badge-24 i::after { animation: ping 1.8s ease-out 6; }
+    @keyframes ping { 0% { opacity: .8; transform: scale(.5); } 100% { opacity: 0; transform: scale(1.8); } }
+}
 .lead { margin-top: 1.25rem; max-width: 46ch; font-size: clamp(1.0313rem, 1rem + .25vw, 1.1875rem); color: var(--muted); }
 
 .rot { display: inline-block; transition: opacity .4s ease, transform .4s cubic-bezier(.2, .7, .2, 1); }
@@ -221,14 +231,18 @@ h3 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.0313rem
 
 /* Logotypy w komórkach */
 .logos { margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); grid-template-columns: repeat(2, 1fr); border-bottom: 0; }
-.logos li { display: grid; place-items: center; min-height: 64px; padding: .875rem; }
-@media (min-width: 1000px) { .logos li { min-height: 80px; } }
+.logos li { display: grid; place-items: center; min-height: 60px; padding: .75rem; }
+@media (min-width: 1000px) { .logos li { min-height: 72px; } }
 .logos .logos-label { grid-column: span 2; place-items: center start; padding-inline: var(--pad); }
 .logos img { max-height: 28px; width: auto; filter: brightness(0) invert(1); opacity: .5; transition: opacity .2s ease; }
 .logos li:hover img { opacity: .95; }
 .logos .logo-badge img { filter: grayscale(1) invert(1) brightness(1.6); }
+.logos .logo-round img { max-height: 52px; }
+.logos li:has(img[src*="4-300x150"]) img { max-height: 64px; }
 @media (min-width: 640px) { .logos { grid-template-columns: repeat(4, 1fr); } }
-@media (min-width: 1000px) { .logos { grid-template-columns: repeat(6, 1fr); } }
+@media (min-width: 1000px) { .logos { grid-template-columns: repeat(7, 1fr); } }
+.logos .logo-text span { font-weight: 800; font-size: .9375rem; letter-spacing: .02em; color: var(--text); opacity: .5; text-align: center; line-height: 1.15; transition: opacity .2s ease; }
+.logos .logo-text:hover span { opacity: .95; }
 
 /* Pasek wskaźników */
 .ticker { border-top: 1px solid var(--line); overflow: hidden; background: var(--surface-deep); }
@@ -543,6 +557,15 @@ h3 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.0313rem
 .done-icon { width: 64px; height: 64px; margin: 0 auto; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--on-accent); box-shadow: 0 0 40px -4px rgba(109, 220, 255, .7); }
 .done-title { font-family: var(--font-display); font-size: 1.75rem; margin-top: 1.25rem; }
 .done-text { color: var(--muted); margin: .75rem auto 0; max-width: 38ch; }
+
+/* Jak wygląda współpraca: miejsce na etapy */
+.coop { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+@media (min-width: 640px) { .coop { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .coop { grid-template-columns: repeat(4, 1fr); } }
+.coop-step { border: 1px dashed var(--accent-line); border-radius: 12px; padding: 1.25rem; }
+.coop-num { width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-family: var(--font-display); }
+.coop-title { font-weight: 700; margin-top: .875rem; }
+.coop-text { color: var(--faint); font-size: .875rem; margin-top: .25rem; }
 
 /* Pasek z wezwaniem do kontaktu */
 .cta-band { border-top: 1px solid var(--line); }

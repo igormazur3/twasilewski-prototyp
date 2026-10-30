@@ -141,7 +141,8 @@ h3 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.0313rem
 .hero-inner { display: grid; gap: 2.5rem; align-items: center; padding-bottom: 1rem; }
 @media (min-width: 1000px) { .hero-inner { grid-template-columns: 1.1fr 1fr; gap: 3rem; } }
 .hero-copy > .label::before, .vs-card .label::before, .footer-grid .label::before { content: "/"; color: var(--accent); margin-right: .45em; }
-.hero h1 { margin-top: 1.125rem; }
+.hero h1 { margin-top: 0; }
+.hero-actions + .badge-24 { margin-top: 1rem; }
 
 /* Znaczek „Odpowiadam w ciągu 24 h” */
 .badge-24 { display: inline-flex; align-items: center; gap: .55rem; padding: .45rem .9rem .45rem .75rem; border-radius: 999px; font-size: .8438rem; font-weight: 700; color: var(--text); background: linear-gradient(90deg, rgba(37, 211, 102, .16), rgba(109, 220, 255, .1)); border: 1px solid rgba(37, 211, 102, .45); box-shadow: 0 0 24px -8px rgba(37, 211, 102, .6); }

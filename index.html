@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Prototyp. W motywie title i description generuje wtyczka SEO, ten tag zostaje tylko tutaj. -->
+<title>Tomasz Wasilewski: marketing, który przekłada się na wzrost firmy</title>
+<meta name="robots" content="noindex">
+<link rel="preload" href="assets/fonts/righteous-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+
+<header class="site-header">
+    <div class="wrap header-inner">
+        <a class="logo" href="/" aria-label="twasilewski.pl, strona główna">twasilewski<b>.pl</b></a>
+        <nav class="nav" id="nav" aria-label="Menu główne">
+            <a href="#uslugi">Co robię</a>
+            <a href="#jak">Jak pracuję</a>
+            <a href="#test">Test</a>
+            <a href="#pytania">Pytania</a>
+            <a href="/blog/">Blog</a>
+        </nav>
+        <a class="btn btn-ghost btn-sm header-contact" href="#nagranie">Kontakt</a>
+        <a class="btn btn-primary btn-sm" href="#test">Zrób test</a>
+        <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false">
+            <span class="sr">Menu</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+    </div>
+</header>
+
+<main id="tresc">
+
+<section class="hero">
+    <div class="wrap hero-wrap">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <p class="label">Tomasz Wasilewski, partner od wzrostu firm</p>
+                <h1 class="rotator" data-rotator><span class="rot" data-rot-a>Wydajesz więcej,</span><br> <span class="rot" data-rot-b>a firma <span class="accent">nie rośnie?</span></span></h1>
+                <p class="lead">Znajdę, gdzie Twój marketing gubi pieniądze i klientów: w reklamach, na stronie, w mailach albo w sprzedaży. I naprawię to.</p>
+
+                <form class="url-form" action="#test" data-hero-form>
+                    <label class="sr" for="hero-www">Adres Twojej strony</label>
+                    <svg class="url-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    <input id="hero-www" type="text" name="www" inputmode="url" autocomplete="url" placeholder="Wpisz adres swojej strony">
+                    <button class="btn btn-primary" type="submit">Sprawdź, gdzie tracisz
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </button>
+                </form>
+                <ul class="micro">
+                    <li>2 minuty</li><li>Wynik od razu</li><li>Bez podawania maila</li>
+                </ul>
+                <a class="hero-alt" href="#nagranie">Wolisz opisać problem? Odpowiem nagraniem</a>
+            </div>
+
+            <div class="stage" role="img" aria-label="Ilustracja diagnozy: mapa drogi klienta z zaznaczonym wąskim gardłem i wykres, na którym wydatki rosną, przychód stoi, a po naprawie znowu rośnie.">
+                <div class="card card-chart">
+                    <div class="card-head">
+                        <span class="label">Diagnoza</span>
+                        <ul class="chart-legend">
+                            <li><i class="dot dot-spend"></i>Wydatki</li>
+                            <li><i class="dot dot-revenue"></i>Przychód</li>
+                        </ul>
+                    </div>
+                    <svg class="chart" viewBox="0 0 640 300" aria-hidden="true">
+                        <g class="chart-grid">
+                            <line x1="0" y1="60" x2="640" y2="60"/>
+                            <line x1="0" y1="130" x2="640" y2="130"/>
+                            <line x1="0" y1="200" x2="640" y2="200"/>
+                            <line x1="0" y1="270" x2="640" y2="270"/>
+                        </g>
+                        <polygon class="chart-gap" points="214,182 300,140 400,100 400,166 300,170"/>
+                        <polyline class="chart-spend" points="10,262 110,226 214,182 300,140 400,100 500,88 630,80"/>
+                        <polyline class="chart-revenue" points="10,250 110,214 214,182 300,170 400,166 470,118 560,72 630,40"/>
+                        <line class="chart-fix" x1="400" y1="30" x2="400" y2="285"/>
+                        <text class="chart-label" x="392" y="46" text-anchor="end">naprawa</text>
+                        <text class="chart-note" x="300" y="200">tu uciekają pieniądze</text>
+                        <g class="chart-mark"><circle class="pulse" cx="400" cy="166" r="14"/><circle cx="400" cy="166" r="5"/></g>
+                        <rect class="chart-cover" x="0" y="0" width="640" height="300"/>
+                    </svg>
+                </div>
+
+                <div class="card card-funnel">
+                    <div class="card-head"><span class="label">Droga klienta</span><span class="chip">ilustracja</span></div>
+                    <ol class="funnel-map" data-hero-funnel>
+                        <li><span>Reklama</span><b class="ok">w porządku</b></li>
+                        <li><span>Strona</span><b class="ok">w porządku</b></li>
+                        <li class="is-leak"><span>Zapytanie</span><b>tu ucieka</b></li>
+                        <li><span>Sprzedaż</span><b class="dim">czeka</b></li>
+                    </ol>
+                </div>
+
+                <div class="card card-alert" data-hero-alert>
+                    <p class="label alert-kicker"><i></i>Wąskie gardło</p>
+                    <p class="alert-title">Obsługa zapytań</p>
+                    <p class="alert-text">Część zapytań czeka za długo albo ginie. Najpierw to, potem więcej reklam.</p>
+                </div>
+
+                <div class="card card-chip">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    Dane zgodne z kontem
+                </div>
+            </div>
+        </div>
+
+        <!-- Logotypy ze starej strony. Do potwierdzenia: zgoda klientów na publikację. -->
+        <ul class="cells logos" aria-label="Firmy, z którymi pracowałem">
+            <li class="logos-label"><span class="label">Pracowałem m.in. z</span></li>
+            <li class="logo-badge"><img src="assets/img/logos/ESET_logo-Photoroom-300x119.png" alt="ESET" width="300" height="119" loading="lazy"></li>
+            <li><img src="assets/img/logos/logo_black-Photoroom.png" alt="Komandor" width="288" height="39" loading="lazy"></li>
+            <li><img src="assets/img/logos/Logo-MB-Photoroom-300x56.png" alt="Med&amp;Beauty" width="300" height="56" loading="lazy"></li>
+            <li><img src="assets/img/logos/logo-cut-black-Photoroom-300x157.png" alt="Social Media Now" width="300" height="157" loading="lazy"></li>
+            <li><img src="assets/img/logos/logowbc-Photoroom.png" alt="The White Bear Coffee" width="272" height="180" loading="lazy"></li>
+            <li><img src="assets/img/logos/logo-Photoroom-2-300x87.png" alt="Pogotowie Dietetyczne" width="300" height="87" loading="lazy"></li>
+            <li><img src="assets/img/logos/logo-learning-one-Photoroom-300x67.png" alt="Learning One" width="300" height="67" loading="lazy"></li>
+            <li><img src="assets/img/logos/soferia-logo.svg" alt="Soferia" width="143" height="22" loading="lazy"></li>
+            <li><img src="assets/img/logos/Zrzut-ekranu-2025-12-29-o-16.15.55-Photoroom-300x89.png" alt="SkyClub" width="300" height="89" loading="lazy"></li>
+            <li><img src="assets/img/logos/logo-coco-biale.svg" alt="Coconut Agency" width="247" height="116" loading="lazy"></li>
+        </ul>
+    </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+        <span>Koszt zdobycia klienta</span><span>Przychód</span><span>Marża</span><span>Zapytania, które kończą się sprzedażą</span><span>Wartość klienta w czasie</span><span>Powroty klientów</span>
+        <span>Koszt zdobycia klienta</span><span>Przychód</span><span>Marża</span><span>Zapytania, które kończą się sprzedażą</span><span>Wartość klienta w czasie</span><span>Powroty klientów</span>
+    </div>
+</div>
+
+<section class="section" id="sytuacje">
+    <div class="wrap">
+        <div class="sec-head">
+            <h2>Brzmi <span class="accent">znajomo?</span></h2>
+            <p class="section-lead">Jeśli łapiesz się na którymś z tych zdań, ta strona jest dla Ciebie. Za każdym stoi inna przyczyna. Od jej znalezienia zaczynam.</p>
+        </div>
+        <ol class="cells quotes">
+            <li>„Wydajemy coraz więcej na reklamy, a sprzedaż stoi w miejscu.”</li>
+            <li>„Nie wiemy, co nam naprawdę sprzedaje.”</li>
+            <li>„Ruch jest, zapytania są, a klientów mało.”</li>
+            <li>„Leady przychodzą i giną. Nikt ich porządnie nie obsługuje.”</li>
+            <li>„Mamy firmę od reklam, kogoś od strony i kogoś od maili. Za wynik nie odpowiada nikt.”</li>
+            <li>„Zespół robi ręcznie rzeczy, które dawno powinny dziać się same.”</li>
+            <li class="quotes-cta"><a href="#test">Sprawdź, które dotyczy Ciebie <span aria-hidden="true">→</span></a></li>
+            <li class="quotes-cta quotes-cta-alt"><a href="#nagranie">Twojego zdania tu nie ma? Opisz je <span aria-hidden="true">→</span></a></li>
+        </ol>
+    </div>
+</section>
+
+<div class="hatch" aria-hidden="true"><div class="wrap"></div></div>
+
+<section class="section section-alt" id="dlaczego">
+    <div class="wrap">
+        <div class="sec-head">
+            <h2>Nie jestem agencją. <span class="accent">Pracujesz bezpośrednio ze mną.</span></h2>
+            <dl class="stats">
+                <div><dt data-count="50">50+</dt><dd>audytów kont reklamowych i analityki</dd></div>
+                <div><dt data-count="7">7+</dt><dd>lat doświadczenia w marketingu</dd></div>
+            </dl>
+        </div>
+
+        <div class="cells versus">
+            <article class="vs-card">
+                <p class="label">Agencja</p>
+                <svg class="vs-diagram" viewBox="0 0 320 120" aria-hidden="true">
+                    <line x1="40" y1="60" x2="140" y2="60"/><line x1="140" y1="60" x2="240" y2="60"/>
+                    <circle cx="40" cy="60" r="10" class="n-you"/><circle cx="140" cy="60" r="8"/><circle cx="240" cy="60" r="8"/>
+                    <text x="40" y="96">Ty</text><text x="140" y="96">opiekun</text><text x="240" y="96">junior</text>
+                </svg>
+                <ul class="vs-list">
+                    <li>Rozmawiasz z opiekunem klienta</li>
+                    <li>Na koncie często junior, który uczy się na Twoim budżecie</li>
+                    <li>Każdy pilnuje swojej usługi</li>
+                    <li>Wynik mierzony kliknięciami i zasięgami</li>
+                </ul>
+            </article>
+            <article class="vs-card">
+                <p class="label">Kilka firm od kawałków</p>
+                <svg class="vs-diagram" viewBox="0 0 320 120" aria-hidden="true">
+                    <line x1="40" y1="60" x2="220" y2="20"/><line x1="40" y1="60" x2="220" y2="60"/><line x1="40" y1="60" x2="220" y2="100"/>
+                    <circle cx="40" cy="60" r="10" class="n-you"/><circle cx="220" cy="20" r="7"/><circle cx="220" cy="60" r="7"/><circle cx="220" cy="100" r="7"/>
+                    <text x="40" y="96">Ty</text><text x="238" y="24" text-anchor="start">reklamy</text><text x="238" y="64" text-anchor="start">strona</text><text x="238" y="104" text-anchor="start">maile</text>
+                </svg>
+                <ul class="vs-list">
+                    <li>Z każdą firmą rozmawiasz osobno</li>
+                    <li>Każdy robi swój kawałek</li>
+                    <li>Całości nie widzi nikt</li>
+                    <li>Każdy ma swój wskaźnik</li>
+                </ul>
+            </article>
+            <article class="vs-card is-me">
+                <p class="label">Ja</p>
+                <svg class="vs-diagram" viewBox="0 0 320 120" aria-hidden="true">
+                    <line x1="40" y1="60" x2="130" y2="60" class="l-strong"/>
+                    <line x1="130" y1="60" x2="220" y2="20"/><line x1="130" y1="60" x2="220" y2="60"/><line x1="130" y1="60" x2="220" y2="100"/>
+                    <circle cx="40" cy="60" r="10" class="n-you"/><circle cx="130" cy="60" r="13" class="n-me"/>
+                    <circle cx="220" cy="20" r="7"/><circle cx="220" cy="60" r="7"/><circle cx="220" cy="100" r="7"/>
+                    <text x="40" y="96">Ty</text><text x="130" y="100">ja</text>
+                    <text x="238" y="24" text-anchor="start">reklamy</text><text x="238" y="64" text-anchor="start">strona</text><text x="238" y="104" text-anchor="start">sprzedaż</text>
+                </svg>
+                <ul class="vs-list">
+                    <li>Rozmawiasz bezpośrednio ze mną</li>
+                    <li>Reklamy i dane robię sam, resztę prowadzę</li>
+                    <li>Widzę całość, od reklamy do sprzedaży</li>
+                    <li>Liczę przychód, marżę i koszt zdobycia klienta</li>
+                </ul>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="uslugi">
+    <div class="wrap">
+        <div class="sec-head">
+            <h2>Gdzie szukam pieniędzy, <span class="accent">które Ci uciekają</span></h2>
+            <p class="section-lead">Nie jestem ekspertem od wszystkiego i nie udaję. W reklamach i danych jestem specjalistą. W pozostałych obszarach wiem dość, żeby znaleźć problem, wskazać dobre rozwiązanie i dopilnować, żeby zadziałało.</p>
+        </div>
+
+        <div class="cells featured">
+            <a class="feat" href="/google-ads/">
+                <span class="tag">Robię sam</span>
+                <h3>Reklamy w Google i na Facebooku</h3>
+                <p>Płacisz za kliknięcia ludzi, którzy nigdy nie kupią? Odcinam to i przenoszę budżet tam, gdzie są klienci.</p>
+                <span class="more">Google Ads, Meta Ads <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="feat" href="/analityka/">
+                <span class="tag">Robię sam</span>
+                <h3>Dane, którym można ufać</h3>
+                <p>Decyzje na podstawie liczb, które się nie zgadzają, to zgadywanie. Ustawiam pomiar tak, żebyś wiedział, co naprawdę sprzedaje.</p>
+                <span class="more">Analityka i raporty <span aria-hidden="true">→</span></span>
+            </a>
+        </div>
+
+        <div class="cells svc">
+            <div class="svc-col">
+                <h3>Reklamy</h3>
+                <ul>
+                    <li><a href="/google-ads/">Google Ads <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/meta-ads/">Meta Ads <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/google-ads/">Kampanie produktowe i Performance Max <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/meta-ads/">Remarketing dynamiczny <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/google-ads/">Audyt konta reklamowego <span aria-hidden="true">→</span></a></li>
+                </ul>
+            </div>
+            <div class="svc-col">
+                <h3>Dane i analityka</h3>
+                <ul>
+                    <li><a href="/analityka/">GA4 od podstaw <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/analityka/">GTM i server-side <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/analityka/">Śledzenie konwersji <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/analityka/">Raporty w Looker Studio <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/analityka/">Audyt analityki i plan naprawczy <span aria-hidden="true">→</span></a></li>
+                </ul>
+            </div>
+            <div class="svc-col">
+                <h3>Strona i sprzedaż <span class="tag tag-soft">Prowadzę wdrożenie</span></h3>
+                <ul>
+                    <li><a href="/strona-i-konwersja/">Strona, która zamienia ruch w klientów <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/mailing-i-automatyzacje/">Maile i automatyzacje <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/proces-sprzedazy/">Droga od zapytania do umowy <span aria-hidden="true">→</span></a></li>
+                    <li><a href="/ai-w-firmie/">AI i automaty w powtarzalnej pracy <span aria-hidden="true">→</span></a></li>
+                </ul>
+            </div>
+            <div class="svc-foot">
+                <div>
+                    <p class="svc-foot-title">Nie wiesz, czego potrzebujesz?</p>
+                    <p class="svc-foot-text">2 minuty, wynik od razu.</p>
+                </div>
+                <a class="btn btn-primary btn-sm" href="#test">Zrób test</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt how" id="jak">
+    <div class="wrap how-grid">
+        <div class="how-side">
+            <h2>Jak <span class="accent">pracuję</span></h2>
+            <div class="how-card" aria-hidden="true">
+                <div class="card-head"><span class="label" data-how-count>Krok 01 / 04</span><span class="chip">ilustracja</span></div>
+                <div class="how-panels">
+                    <div class="how-panel is-active" data-panel="0">
+                        <p class="panel-title">Czy liczby się zgadzają?</p>
+                        <div class="cmp-row"><span>Panel reklamowy</span><i style="--v:92%"></i></div>
+                        <div class="cmp-row"><span>Sprzedaż na koncie</span><i class="is-real" style="--v:58%"></i></div>
+                        <p class="panel-note"><b></b>Różnica do wyjaśnienia</p>
+                    </div>
+                    <div class="how-panel" data-panel="1">
+                        <p class="panel-title">Gdzie ucieka klient?</p>
+                        <ol class="funnel-map">
+                            <li><span>Reklama</span><b class="ok">w porządku</b></li>
+                            <li><span>Strona</span><b class="ok">w porządku</b></li>
+                            <li class="is-leak"><span>Zapytanie</span><b>tu ucieka</b></li>
+                            <li><span>Sprzedaż</span><b class="dim">czeka</b></li>
+                        </ol>
+                    </div>
+                    <div class="how-panel" data-panel="2">
+                        <p class="panel-title">Od czego zacząć?</p>
+                        <div class="prio is-top"><span>Obsługa zapytań</span><i style="--v:100%"></i><b>najpierw</b></div>
+                        <div class="prio"><span>Formularz kontaktu</span><i style="--v:55%"></i><b>potem</b></div>
+                        <div class="prio"><span>Nowe kampanie</span><i style="--v:25%"></i><b>później</b></div>
+                    </div>
+                    <div class="how-panel" data-panel="3">
+                        <p class="panel-title">Co dalej z budżetem?</p>
+                        <svg class="mini-chart" viewBox="0 0 400 180">
+                            <line class="mc-grid" x1="0" y1="45" x2="400" y2="45"/><line class="mc-grid" x1="0" y1="90" x2="400" y2="90"/><line class="mc-grid" x1="0" y1="135" x2="400" y2="135"/>
+                            <polyline class="mc-up" points="10,150 90,130 170,112 250,80 330,48 390,22"/>
+                            <polyline class="mc-down" points="10,120 90,124 170,132 250,140"/>
+                            <text class="mc-label mc-label-up" x="380" y="52" text-anchor="end">działa: dokładam</text>
+                            <text class="mc-label" x="262" y="160">nie działa: wyłączam</text>
+                            <g class="mc-x"><line x1="244" y1="134" x2="256" y2="146"/><line x1="256" y1="134" x2="244" y2="146"/></g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ol class="how-steps">
+            <li class="is-active" data-step="0">
+                <span class="how-num">01</span>
+                <h3>Sprawdzam, czy dane mówią prawdę</h3>
+                <p>Zanim cokolwiek zmienię, upewniam się, że liczby w reklamach i analityce zgadzają się z tym, co widzisz na koncie.</p>
+            </li>
+            <li data-step="1">
+                <span class="how-num">02</span>
+                <h3>Szukam miejsca, w którym tracisz</h3>
+                <p>Przechodzę całą drogę klienta: od reklamy przez stronę i zapytanie po sprzedaż.</p>
+            </li>
+            <li data-step="2">
+                <span class="how-num">03</span>
+                <h3>Naprawiam najpierw to, co da najwięcej</h3>
+                <p>Nie poprawiam wszystkiego naraz. Zaczynam od zmiany z największym efektem i sprawdzam, czy zadziałała.</p>
+            </li>
+            <li data-step="3">
+                <span class="how-num">04</span>
+                <h3>Dokładam tam, gdzie działa</h3>
+                <p>Kiedy coś przynosi klientów, zwiększam skalę. Kiedy nie przynosi, wyłączam i szukam dalej.</p>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<section class="section" id="test">
+    <div class="wrap test-wrap">
+        <div class="test-head">
+            <h2>Sprawdź, gdzie Twoja firma <span class="accent">traci pieniądze</span></h2>
+            <p class="section-lead">7 pytań, około 2 minut. Wynik zobaczysz od razu, bez podawania maila.</p>
+            <ul class="test-areas" aria-label="Obszary, które sprawdza test">
+                <li>Dane</li><li>Reklamy</li><li>Strona</li><li>Obsługa zapytań</li><li>Powracający klienci</li>
+            </ul>
+        </div>
+
+        <div class="quiz" data-quiz>
+            <div class="quiz-start" data-step="start">
+                <p class="label quiz-kicker">00 / 07</p>
+                <p class="quiz-intro">Odpowiadaj tak, jak jest, a nie tak, jak powinno być. Tylko wtedy wynik coś Ci powie.</p>
+                <button class="btn btn-primary" type="button" data-quiz-start>Zaczynam</button>
+            </div>
+
+            <div class="quiz-body" data-step="questions" hidden>
+                <div class="quiz-progress" data-quiz-progress aria-hidden="true"></div>
+                <p class="label quiz-count" data-quiz-count></p>
+                <fieldset class="quiz-q">
+                    <legend data-quiz-question></legend>
+                    <div class="quiz-options" data-quiz-options></div>
+                </fieldset>
+                <button class="quiz-back" type="button" data-quiz-back>Wstecz</button>
+            </div>
+
+            <div class="quiz-result" data-step="result" hidden aria-live="polite">
+                <p class="label quiz-result-label">Twój wynik</p>
+                <h3 data-result-title tabindex="-1"></h3>
+                <p data-result-text></p>
+                <div class="result-bars" data-result-bars></div>
+
+                <form class="form" data-form="lead" novalidate>
+                    <p class="form-title">Chcesz pełne omówienie? Wyślę Ci je mailem: co sprawdzić w pierwszej kolejności i jak to naprawić.</p>
+                    <div class="form-row">
+                        <label>E-mail<input type="email" name="email" required autocomplete="email"></label>
+                        <label><span>Adres strony <small>(opcjonalnie)</small></span><input type="url" name="www" placeholder="https://" autocomplete="url"></label>
+                    </div>
+                    <label class="check"><input type="checkbox" name="zgoda" required> Zgadzam się na kontakt w sprawie wyniku testu. <a href="/polityka-prywatnosci/">Polityka prywatności</a></label>
+                    <input type="hidden" name="wynik" data-result-field>
+                    <button class="btn btn-primary" type="submit">Wyślij mi omówienie</button>
+                    <p class="form-ok" hidden>Dzięki. Odezwę się z omówieniem na podany adres.</p>
+                </form>
+                <button class="quiz-back" type="button" data-quiz-restart>Zrób test jeszcze raz</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="hatch" aria-hidden="true"><div class="wrap"></div></div>
+
+<section class="section section-alt" id="pytania">
+    <div class="wrap faq-wrap">
+        <div>
+            <h2>Pytania, które <span class="accent">często słyszę</span></h2>
+            <!-- CZEKA: 2-3 historie klientów. Docelowo osobna sekcja nad pytaniami. -->
+            <div class="placeholder">Miejsce na 2-3 historie klientów: sytuacja, co znalazłem, co zmieniłem, wynik.</div>
+        </div>
+        <div class="faq">
+            <details>
+                <summary>Z jakimi firmami pracujesz?</summary>
+                <p>Z każdą, która już sprzedaje i chce rosnąć: sklepy internetowe, firmy usługowe, B2B, oprogramowanie, biznesy lokalne. Branża ma mniejsze znaczenie niż sytuacja. Każdy przypadek oceniam osobno.</p>
+            </details>
+            <details>
+                <summary>Jesteś ekspertem od wszystkiego?</summary>
+                <p>Nie. W reklamach i danych jestem specjalistą i robię je sam. Przy stronie, mailach, sprzedaży i automatyzacji wiem dość, żeby znaleźć problem, wskazać dobre rozwiązanie i dopilnować wdrożenia.</p>
+            </details>
+            <details>
+                <summary>Mam już agencję. Muszę z niej zrezygnować?</summary>
+                <!-- Do potwierdzenia przez Tomasza. -->
+                <p>Nie. Mogę spojrzeć na całość i pokazać, gdzie leży problem. Co z tym zrobisz dalej, zdecydujesz sam.</p>
+            </details>
+            <details>
+                <summary>Co się dzieje po teście?</summary>
+                <p>Wynik widzisz od razu na ekranie. Jeśli zostawisz e-mail, wyślę Ci pełne omówienie: co sprawdzić w pierwszej kolejności i jak to naprawić.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<section class="section cta" id="nagranie">
+    <div class="wrap split">
+        <div>
+            <h2>Wolisz od razu <span class="accent">konkret?</span></h2>
+            <p class="section-lead">Opisz w dwóch zdaniach, co Cię boli. Odpowiem krótkim nagraniem wideo, w którym powiem, od czego bym zaczął.</p>
+            <ul class="contact-list">
+                <li><a href="mailto:kontakt@twasilewski.pl">kontakt@twasilewski.pl</a></li>
+                <li><a href="https://www.linkedin.com/in/tomasz-wasilewski-172aa1242/" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+        <form class="form form-card" data-form="video" novalidate>
+            <label>Co Cię boli?<textarea name="problem" rows="4" required placeholder="Np. zapytań jest dużo, ale mało z nich kończy się sprzedażą."></textarea></label>
+            <label>E-mail<input type="email" name="email" required autocomplete="email"></label>
+            <label class="check"><input type="checkbox" name="zgoda" required> Zgadzam się na kontakt w sprawie mojego zgłoszenia. <a href="/polityka-prywatnosci/">Polityka prywatności</a></label>
+            <button class="btn btn-primary" type="submit">Wyślij</button>
+            <p class="form-ok" hidden>Dzięki. Nagram odpowiedź i wyślę ją na podany adres.</p>
+        </form>
+    </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="wrap">
+        <div class="cells footer-grid">
+            <div class="footer-brand">
+                <a class="logo" href="/">twasilewski<b>.pl</b></a>
+                <p>Szukam, gdzie marketing i sprzedaż gubią pieniądze, i to naprawiam.</p>
+            </div>
+            <div>
+                <p class="label">Co robię</p>
+                <ul>
+                    <li><a href="/google-ads/">Google Ads</a></li>
+                    <li><a href="/meta-ads/">Meta Ads</a></li>
+                    <li><a href="/analityka/">Analityka i dane</a></li>
+                    <li><a href="/strona-i-konwersja/">Strona i konwersja</a></li>
+                    <li><a href="/mailing-i-automatyzacje/">Maile i automatyzacje</a></li>
+                    <li><a href="/proces-sprzedazy/">Proces sprzedaży</a></li>
+                    <li><a href="/ai-w-firmie/">AI w firmie</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="label">Na stronie</p>
+                <ul>
+                    <li><a href="#test">Test: gdzie tracisz</a></li>
+                    <li><a href="#jak">Jak pracuję</a></li>
+                    <li><a href="#pytania">Pytania</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="label">Kontakt</p>
+                <ul>
+                    <li><a href="mailto:kontakt@twasilewski.pl">kontakt@twasilewski.pl</a></li>
+                    <li><a href="https://www.linkedin.com/in/tomasz-wasilewski-172aa1242/" rel="noopener">LinkedIn</a></li>
+                    <li><a href="#nagranie">Opisz problem</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 twasilewski.pl</p>
+            <a href="/polityka-prywatnosci/">Polityka prywatności</a>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

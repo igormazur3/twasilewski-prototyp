@@ -521,92 +521,123 @@
     <div class="wrap">
         <div class="sec-head">
             <h2>Co mówią <span class="accent">klienci</span></h2>
-            <div class="t-controls">
-                <button class="t-btn" type="button" data-t-prev aria-label="Poprzednie opinie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
-                <button class="t-btn" type="button" data-t-next aria-label="Następne opinie"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-            </div>
+            <p class="section-lead">Opinie ludzi, z którymi pracowałem. Własnymi słowami, z imienia i nazwiska.</p>
         </div>
         <!--
-            CZEKA: ok. 10 opinii od Tomasza. Każda karta:
+            CZEKA: ok. 10 opinii od Tomasza. Każda opinia ma panel (tst-panel) i pozycję na liście (tst-item), w tej samej kolejności.
             - zdjęcie: zamień <span class="t-avatar"></span> na
-              <img class="t-photo" src="assets/img/opinie/imie-nazwisko.webp" alt="" width="56" height="56" loading="lazy">
+              <img class="t-photo" src="assets/img/opinie/imie-nazwisko.webp" alt="" width="64" height="64" loading="lazy">
               Bez zdjęcia zostaw t-avatar, inicjały wstawią się same z imienia i nazwiska.
-            - kilka zdań opinii w blockquote (bez cudzysłowu, wstawia się sam), imię i nazwisko w t-name, stanowisko i firma w t-role.
+            - w panelu: opinia w blockquote (bez cudzysłowu), imię i nazwisko w t-name, stanowisko w t-role, firma w t-company.
+            - na liście: imię i nazwisko w t-name, firma w t-role.
             - po wpisaniu prawdziwej opinii usuń atrybut data-placeholder.
         -->
-        <div class="t-track" data-t-track tabindex="0" aria-label="Opinie klientów">
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 1: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 2: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 3: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 4: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 5: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 6: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 7: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 8: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 9: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
-                <figure class="t-card" data-placeholder>
-                    <blockquote>Miejsce na opinię klienta nr 10: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
-                    <figcaption>
-                        <span class="t-avatar" aria-hidden="true"></span>
-                        <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko, Firma</span></span>
-                    </figcaption>
-                </figure>
+        <div class="tst" data-tst-root>
+            <div class="tst-stage">
+                <div class="tst-bars" aria-hidden="true"><span class="is-active"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="tst-panels" aria-live="polite">
+                    <figure class="tst-panel is-active" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 1: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-panel" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 2: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-panel" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 3: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-panel" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 4: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-panel" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 5: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-panel" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 6: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-panel" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 7: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-panel" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 8: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-panel" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 9: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="tst-panel" data-placeholder>
+                        <blockquote>Miejsce na opinię klienta nr 10: kilka zdań o tym, co się zmieniło po współpracy.</blockquote>
+                        <figcaption>
+                            <span class="t-avatar" aria-hidden="true"></span>
+                            <span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Stanowisko</span></span>
+                            <span class="t-company">Firma</span>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="tst-nav">
+                    <p class="tst-count" data-tst-count>01 / 10</p>
+                    <div class="tst-arrows">
+                        <button class="t-btn" type="button" data-tst-prev aria-label="Poprzednia opinia"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+                        <button class="t-btn" type="button" data-tst-next aria-label="Następna opinia"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+                    </div>
+                </div>
+            </div>
+            <ul class="tst-list" aria-label="Wybierz opinię">
+                <li><button class="tst-item is-active" type="button" data-tst="0" aria-pressed="true"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+                <li><button class="tst-item" type="button" data-tst="1"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+                <li><button class="tst-item" type="button" data-tst="2"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+                <li><button class="tst-item" type="button" data-tst="3"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+                <li><button class="tst-item" type="button" data-tst="4"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+                <li><button class="tst-item" type="button" data-tst="5"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+                <li><button class="tst-item" type="button" data-tst="6"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+                <li><button class="tst-item" type="button" data-tst="7"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+                <li><button class="tst-item" type="button" data-tst="8"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+                <li><button class="tst-item" type="button" data-tst="9"><span class="t-avatar" aria-hidden="true"></span><span class="t-who"><b class="t-name">Imię Nazwisko</b><span class="t-role">Firma</span></span></button></li>
+            </ul>
         </div>
-        <div class="t-progress" aria-hidden="true"><span data-t-bar></span></div>
     </div>
 </section>
 

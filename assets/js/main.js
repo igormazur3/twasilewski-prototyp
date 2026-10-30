@@ -3,6 +3,8 @@
 (function () {
     document.documentElement.classList.add('js');
 
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     window.dataLayer = window.dataLayer || [];
     function track(event, params) {
         window.dataLayer.push(Object.assign({ event: event }, params || {}));
@@ -76,33 +78,61 @@
         });
     }
 
-    // Opinie: przewijany slider. Bez zdjęcia awatar dostaje inicjały z imienia i nazwiska.
+    // Opinie: bez zdjęcia awatar dostaje inicjały z imienia i nazwiska.
     document.querySelectorAll('.t-avatar').forEach(function (el) {
         var name = el.parentNode.querySelector('.t-name').textContent.trim().split(/\s+/);
         el.textContent = name.map(function (w) { return w.charAt(0); }).slice(0, 2).join('').toUpperCase();
     });
-    var tTrack = document.querySelector('[data-t-track]');
-    if (tTrack) {
-        var tPrev = document.querySelector('[data-t-prev]');
-        var tNext = document.querySelector('[data-t-next]');
-        var tBar = document.querySelector('[data-t-bar]');
-        var step = function () {
-            var card = tTrack.querySelector('.t-card');
-            return card ? card.getBoundingClientRect().width + 16 : tTrack.clientWidth;
+    // Opinie: jedna duża opinia naraz, paski postępu i lista klientów. Przełącza się sama, chyba że ktoś czyta (najechanie, fokus) albo ma wyłączone animacje.
+    var tst = document.querySelector('[data-tst-root]');
+    if (tst) {
+        var tPanels = tst.querySelectorAll('.tst-panel');
+        var tItems = tst.querySelectorAll('.tst-item');
+        var tBars = tst.querySelectorAll('.tst-bars span');
+        var tCount = tst.querySelector('[data-tst-count]');
+        var tAt = 0, tTimer = null, TST_TIME = 8000;
+        var tPad = function (n) { return (n < 10 ? '0' : '') + n; };
+        var tShow = function (n, user) {
+            tAt = (n + tPanels.length) % tPanels.length;
+            tPanels.forEach(function (el, i) { el.classList.toggle('is-active', i === tAt); });
+            tItems.forEach(function (el, i) { el.classList.toggle('is-active', i === tAt); el.setAttribute('aria-pressed', i === tAt ? 'true' : 'false'); });
+            tBars.forEach(function (el, i) {
+                el.classList.remove('is-active');
+                el.classList.toggle('is-done', i < tAt);
+            });
+            void tBars[tAt].offsetWidth;
+            tBars[tAt].classList.add('is-active');
+            tCount.textContent = tPad(tAt + 1) + ' / ' + tPad(tPanels.length);
+            if (user) track('testimonial_view', { testimonial: tAt + 1 });
+            tSchedule();
         };
-        var update = function () {
-            var max = tTrack.scrollWidth - tTrack.clientWidth;
-            var ratio = tTrack.clientWidth / tTrack.scrollWidth;
-            tBar.style.width = (ratio * 100) + '%';
-            tBar.style.transform = 'translateX(' + (max > 0 ? (tTrack.scrollLeft / max) * ((1 - ratio) / ratio) * 100 : 0) + '%)';
-            tPrev.disabled = tTrack.scrollLeft <= 2;
-            tNext.disabled = tTrack.scrollLeft >= max - 2;
+        var tSchedule = function () {
+            clearTimeout(tTimer);
+            if (reduceMotion || tst.classList.contains('is-paused')) return;
+            tTimer = setTimeout(function () { tShow(tAt + 1); }, TST_TIME);
         };
-        tPrev.addEventListener('click', function () { tTrack.scrollBy({ left: -step() }); track('testimonial_nav', { dir: 'prev' }); });
-        tNext.addEventListener('click', function () { tTrack.scrollBy({ left: step() }); track('testimonial_nav', { dir: 'next' }); });
-        tTrack.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-        update();
+        tItems.forEach(function (btn, i) { btn.addEventListener('click', function () { tShow(i, true); }); });
+        tst.querySelector('[data-tst-prev]').addEventListener('click', function () { tShow(tAt - 1, true); });
+        tst.querySelector('[data-tst-next]').addEventListener('click', function () { tShow(tAt + 1, true); });
+        var tPause = function () { tst.classList.add('is-paused'); clearTimeout(tTimer); };
+        var tResume = function () { tst.classList.remove('is-paused'); tSchedule(); };
+        tst.addEventListener('mouseenter', tPause);
+        tst.addEventListener('mouseleave', tResume);
+        tst.addEventListener('focusin', tPause);
+        tst.addEventListener('focusout', tResume);
+        if (!reduceMotion) {
+            tst.classList.add('is-auto');
+            tst.style.setProperty('--tst-time', (TST_TIME / 1000) + 's');
+        }
+        // Start dopiero, gdy sekcja jest na ekranie, żeby pierwsza opinia nie przewinęła się poza wzrokiem.
+        if ('IntersectionObserver' in window) {
+            var tIo = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) { tShow(0); tIo.disconnect(); }
+            }, { threshold: 0.35 });
+            tIo.observe(tst);
+        } else {
+            tShow(0);
+        }
     }
 
     // Menu mobilne
@@ -139,7 +169,6 @@
         });
     }
 
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Zmienny nagłówek w hero. Każdy problem przestawia też wąskie gardło w kartach pod nim.
     // Etapy: 0 reklama, 1 strona, 2 zapytanie, 3 sprzedaż.

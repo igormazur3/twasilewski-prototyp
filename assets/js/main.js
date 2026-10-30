@@ -76,6 +76,35 @@
         });
     }
 
+    // Opinie: przewijany slider. Bez zdjęcia awatar dostaje inicjały z imienia i nazwiska.
+    document.querySelectorAll('.t-avatar').forEach(function (el) {
+        var name = el.parentNode.querySelector('.t-name').textContent.trim().split(/\s+/);
+        el.textContent = name.map(function (w) { return w.charAt(0); }).slice(0, 2).join('').toUpperCase();
+    });
+    var tTrack = document.querySelector('[data-t-track]');
+    if (tTrack) {
+        var tPrev = document.querySelector('[data-t-prev]');
+        var tNext = document.querySelector('[data-t-next]');
+        var tBar = document.querySelector('[data-t-bar]');
+        var step = function () {
+            var card = tTrack.querySelector('.t-card');
+            return card ? card.getBoundingClientRect().width + 16 : tTrack.clientWidth;
+        };
+        var update = function () {
+            var max = tTrack.scrollWidth - tTrack.clientWidth;
+            var ratio = tTrack.clientWidth / tTrack.scrollWidth;
+            tBar.style.width = (ratio * 100) + '%';
+            tBar.style.transform = 'translateX(' + (max > 0 ? (tTrack.scrollLeft / max) * ((1 - ratio) / ratio) * 100 : 0) + '%)';
+            tPrev.disabled = tTrack.scrollLeft <= 2;
+            tNext.disabled = tTrack.scrollLeft >= max - 2;
+        };
+        tPrev.addEventListener('click', function () { tTrack.scrollBy({ left: -step() }); track('testimonial_nav', { dir: 'prev' }); });
+        tNext.addEventListener('click', function () { tTrack.scrollBy({ left: step() }); track('testimonial_nav', { dir: 'next' }); });
+        tTrack.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+    }
+
     // Menu mobilne
     var toggle = document.querySelector('.nav-toggle');
     var nav = document.getElementById('nav');

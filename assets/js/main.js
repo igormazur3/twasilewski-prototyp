@@ -19,14 +19,62 @@
         });
     });
 
-    // Przycisk „Zapytaj o to” w karcie usługi ustawia temat w formularzu kontaktowym.
-    var topicSelect = document.querySelector('[data-topic-select]');
+    // Przycisk „Zapytaj o to” w karcie usługi zaznacza ten temat w formularzu kontaktowym.
     document.querySelectorAll('[data-topic]').forEach(function (a) {
         a.addEventListener('click', function () {
-            if (topicSelect) topicSelect.value = a.getAttribute('data-topic');
+            var chip = document.querySelector('[data-form="contact"] [name="temat"][value="' + a.getAttribute('data-topic') + '"]');
+            if (chip) chip.checked = true;
             track('service_ask', { service: a.getAttribute('data-topic') });
         });
     });
+
+    // Formularz kontaktowy w trzech krokach. Bez JS wszystkie kroki są widoczne naraz.
+    var stepper = document.querySelector('.stepper');
+    if (stepper) {
+        var stepEls = stepper.querySelectorAll('[data-form-step]');
+        var bar = stepper.querySelectorAll('.stepper-bar span');
+        var countEl = stepper.querySelector('[data-step-count]');
+        var at = 0;
+        stepper.classList.add('is-stepped');
+
+        var go = function (n) {
+            at = n;
+            stepEls.forEach(function (el, i) { el.classList.toggle('is-active', i === n); });
+            bar.forEach(function (el, i) { el.classList.toggle('is-done', i <= n); });
+            countEl.textContent = 'Krok ' + (n + 1) + ' z ' + stepEls.length;
+            var first = stepEls[n].querySelector('input, textarea');
+            if (first && n > 0) first.focus({ preventScroll: true });
+            track('form_step', { form_step: n + 1 });
+        };
+
+        var stepValid = function (el) {
+            var ok = true;
+            el.querySelectorAll('[required]').forEach(function (field) {
+                var good = field.type === 'checkbox' ? field.checked : field.value.trim() !== '' && field.checkValidity();
+                field.setAttribute('aria-invalid', good ? 'false' : 'true');
+                if (!good && ok) { field.focus(); ok = false; }
+            });
+            return ok;
+        };
+
+        stepper.querySelectorAll('[data-step-next]').forEach(function (btn) {
+            btn.addEventListener('click', function () { if (stepValid(stepEls[at])) go(at + 1); });
+        });
+        stepper.querySelectorAll('[data-step-prev]').forEach(function (btn) {
+            btn.addEventListener('click', function () { go(at - 1); });
+        });
+
+        // Podpowiedzi w kroku 2 dopisują gotowe zdanie do opisu.
+        var problem = stepper.querySelector('[name="problem"]');
+        stepper.querySelectorAll('[data-hint]').forEach(function (h) {
+            h.addEventListener('click', function () {
+                var text = h.getAttribute('data-hint');
+                if (problem.value.indexOf(text) === -1) problem.value = (problem.value.trim() + ' ' + text).trim();
+                h.classList.add('is-used');
+                problem.focus();
+            });
+        });
+    }
 
     // Menu mobilne
     var toggle = document.querySelector('.nav-toggle');
@@ -388,9 +436,15 @@
             if (kind === 'lead') {
                 track('lead_submit', { quiz_result: form.querySelector('[name="wynik"]').value });
             } else if (kind === 'contact') {
-                track('contact_submit', { topic: form.querySelector('[name="temat"]').value || 'nie-wiem' });
-            } else {
-                track('video_request');
+                var topics = Array.prototype.map.call(form.querySelectorAll('[name="temat"]:checked'), function (el) { return el.value; });
+                track('contact_submit', { topic: topics.join(',') || 'nie-wiem', channel: form.querySelector('[name="kanal"]:checked').value });
+                var name = form.querySelector('[name="imie"]').value.trim();
+                form.querySelectorAll('.step, .stepper-bar').forEach(function (el) { el.hidden = true; });
+                form.querySelector('[data-step-count]').textContent = 'Wysłane';
+                form.querySelector('[data-form-done]').hidden = false;
+                form.querySelector('[data-done-title]').textContent = 'Dzięki, ' + name + '. Mam to.';
+                form.querySelector('[data-done-title]').focus();
+                return;
             }
             form.querySelectorAll('input, select, textarea, button').forEach(function (el) { el.disabled = true; });
             form.querySelector('.form-ok').hidden = false;

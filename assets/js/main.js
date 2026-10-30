@@ -5,6 +5,11 @@
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Sekcje czekające na treść (opinie, współpraca, historie) są ukryte. Podgląd: dopisz ?draft=1 do adresu.
+    if (/[?&]draft=1/.test(location.search)) {
+        document.querySelectorAll('[data-draft]').forEach(function (el) { el.hidden = false; });
+    }
+
     window.dataLayer = window.dataLayer || [];
     function track(event, params) {
         window.dataLayer.push(Object.assign({ event: event }, params || {}));
@@ -30,6 +35,48 @@
         });
     });
 
+    // Walidacja: pole z błędem dostaje komunikat pod spodem (powiązany przez aria-describedby), a nie tylko czerwoną ramkę.
+    var errSeq = 0;
+    function setError(field, msg) {
+        var holder = field.closest('label') || field.parentNode;
+        var err = holder.querySelector('.field-error');
+        if (msg) {
+            if (!err) {
+                err = document.createElement('span');
+                err.className = 'field-error';
+                err.id = 'err-' + (++errSeq);
+                holder.appendChild(err);
+            }
+            err.textContent = msg;
+            field.setAttribute('aria-invalid', 'true');
+            field.setAttribute('aria-describedby', err.id);
+        } else {
+            if (err) err.remove();
+            field.setAttribute('aria-invalid', 'false');
+            field.removeAttribute('aria-describedby');
+        }
+    }
+    function checkFields(scope) {
+        var first = null;
+        scope.querySelectorAll('[required]').forEach(function (field) {
+            var good = field.type === 'checkbox' ? field.checked : field.value.trim() !== '' && field.checkValidity();
+            setError(field, good ? '' : (field.getAttribute('data-error') || 'Uzupełnij to pole.'));
+            if (!good && !first) first = field;
+        });
+        if (first) first.focus();
+        return !first;
+    }
+    document.addEventListener('input', function (e) {
+        if (e.target.getAttribute && e.target.getAttribute('aria-invalid') === 'true') {
+            var f = e.target;
+            var good = f.type === 'checkbox' ? f.checked : f.value.trim() !== '' && f.checkValidity();
+            if (good) setError(f, '');
+        }
+    });
+    document.addEventListener('change', function (e) {
+        if (e.target.type === 'checkbox' && e.target.checked && e.target.getAttribute('aria-invalid') === 'true') setError(e.target, '');
+    });
+
     // Formularz kontaktowy w trzech krokach. Bez JS wszystkie kroki są widoczne naraz.
     var stepper = document.querySelector('.stepper');
     if (stepper) {
@@ -44,19 +91,34 @@
             stepEls.forEach(function (el, i) { el.classList.toggle('is-active', i === n); });
             bar.forEach(function (el, i) { el.classList.toggle('is-done', i <= n); });
             countEl.textContent = 'Krok ' + (n + 1) + ' z ' + stepEls.length;
+            if (n === stepEls.length - 1) updateSummary();
             var first = stepEls[n].querySelector('input, textarea');
             if (first && n > 0) first.focus({ preventScroll: true });
             track('form_step', { form_step: n + 1 });
         };
 
-        var stepValid = function (el) {
-            var ok = true;
-            el.querySelectorAll('[required]').forEach(function (field) {
-                var good = field.type === 'checkbox' ? field.checked : field.value.trim() !== '' && field.checkValidity();
-                field.setAttribute('aria-invalid', good ? 'false' : 'true');
-                if (!good && ok) { field.focus(); ok = false; }
+        var stepValid = function (el) { return checkFields(el); };
+
+        // Przy wyborze kontaktu przez telefon albo WhatsApp numer jest obowiązkowy, żeby zgłoszenie nie było bez odpowiedzi.
+        var phone = stepper.querySelector('[name="telefon"]');
+        var phoneHint = stepper.querySelector('[data-phone-hint]');
+        stepper.querySelectorAll('[name="kanal"]').forEach(function (r) {
+            r.addEventListener('change', function () {
+                var need = r.value !== 'email';
+                phone.required = need;
+                phoneHint.textContent = need ? '*' : '(opcjonalnie)';
+                if (!need) setError(phone, '');
             });
-            return ok;
+        });
+
+        // W kroku 3 przypominamy wybrane tematy.
+        var LABEL_TOPIC = {};
+        stepper.querySelectorAll('[name="temat"]').forEach(function (c) { LABEL_TOPIC[c.value] = c.nextElementSibling.textContent; });
+        var summary = stepper.querySelector('[data-topic-summary]');
+        var updateSummary = function () {
+            var chosen = Array.prototype.map.call(stepper.querySelectorAll('[name="temat"]:checked'), function (c) { return LABEL_TOPIC[c.value]; });
+            summary.textContent = chosen.length ? 'Temat: ' + chosen.join(', ') : '';
+            summary.hidden = !chosen.length;
         };
 
         stepper.querySelectorAll('[data-step-next]').forEach(function (btn) {
@@ -88,7 +150,12 @@
     if (tst) {
         var tPanels = tst.querySelectorAll('.tst-panel');
         var tItems = tst.querySelectorAll('.tst-item');
-        var tBars = tst.querySelectorAll('.tst-bars span');
+        var tBarsEl = tst.querySelector('[data-tst-bars]');
+        tBarsEl.style.gridTemplateColumns = 'repeat(' + tPanels.length + ', minmax(0, 1fr))';
+        tPanels.forEach(function () { tBarsEl.appendChild(document.createElement('span')); });
+        var tBars = tBarsEl.querySelectorAll('span');
+        var tToggle = tst.querySelector('[data-tst-toggle]');
+        var tShown = 0, tStopped = false;
         var tCount = tst.querySelector('[data-tst-count]');
         var tAt = 0, tTimer = null, TST_TIME = 8000;
         var tPad = function (n) { return (n < 10 ? '0' : '') + n; };
@@ -104,11 +171,14 @@
             tBars[tAt].classList.add('is-active');
             tCount.textContent = tPad(tAt + 1) + ' / ' + tPad(tPanels.length);
             if (user) track('testimonial_view', { testimonial: tAt + 1 });
+            tShown += 1;
+            if (tShown >= tPanels.length + 1) tStopped = true;
             tSchedule();
         };
         var tSchedule = function () {
             clearTimeout(tTimer);
-            if (reduceMotion || tst.classList.contains('is-paused')) return;
+            if (reduceMotion || tStopped || tst.classList.contains('is-paused') || tst.classList.contains('is-held')) { tst.classList.toggle('is-still', reduceMotion || tStopped || tst.classList.contains('is-held')); return; }
+            tst.classList.remove('is-still');
             tTimer = setTimeout(function () { tShow(tAt + 1); }, TST_TIME);
         };
         tItems.forEach(function (btn, i) { btn.addEventListener('click', function () { tShow(i, true); }); });
@@ -120,6 +190,16 @@
         tst.addEventListener('mouseleave', tResume);
         tst.addEventListener('focusin', tPause);
         tst.addEventListener('focusout', tResume);
+        tToggle.addEventListener('click', function () {
+            var held = tst.classList.toggle('is-held');
+            if (!held) { tStopped = false; tShown = 0; }
+            tToggle.setAttribute('aria-label', held ? 'Wznów przewijanie opinii' : 'Zatrzymaj przewijanie opinii');
+            tToggle.innerHTML = held
+                ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>'
+                : '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+            if (held) clearTimeout(tTimer); else tSchedule();
+        });
+        if (reduceMotion) tToggle.hidden = true;
         if (!reduceMotion) {
             tst.classList.add('is-auto');
             tst.style.setProperty('--tst-time', (TST_TIME / 1000) + 's');
@@ -251,7 +331,14 @@
         heroCopy.addEventListener('mouseleave', function () { paused = false; });
         heroCopy.addEventListener('focusin', function () { paused = true; });
         heroCopy.addEventListener('focusout', function () { paused = false; });
-        setInterval(next, 5000);
+        rotator.addEventListener('touchstart', function () { paused = !paused; }, { passive: true });
+        var swaps = 0;
+        var rotTimer = setInterval(function () {
+            if (paused || document.hidden) return;
+            next();
+            swaps += 1;
+            if (swaps >= PROBLEMS.length * 2) clearInterval(rotTimer);
+        }, 5000);
     }
 
     // Liczby w sekcji „Dlaczego” odliczają od zera, gdy pojawią się na ekranie. Wartość końcowa stoi w HTML.
@@ -421,6 +508,7 @@
                 key.textContent = String.fromCharCode(65 + i);
                 b.appendChild(key);
                 b.appendChild(document.createTextNode(option[0]));
+                if (answers[current] === i) b.classList.add('is-picked');
                 b.addEventListener('click', function () { answer(i); });
                 elOptions.appendChild(b);
             });
@@ -458,7 +546,7 @@
             quiz.querySelector('[data-result-field]').value = best;
 
             var bars = quiz.querySelector('[data-result-bars]');
-            bars.innerHTML = '<p class="result-bars-label mono">Ryzyko strat w każdym obszarze</p>';
+            bars.innerHTML = '<p class="result-bars-label">Ryzyko strat w każdym obszarze</p>';
             ORDER.forEach(function (k) {
                 var ratio = (score[k] || 0) / MAX[k];
                 var row = document.createElement('div');
@@ -485,18 +573,24 @@
 
         quiz.querySelector('[data-quiz-start]').addEventListener('click', function () { restart(); });
 
-        // Pole w hero: zapisuje adres strony do formularza wyniku i od razu uruchamia test.
-        var heroForm = document.querySelector('[data-hero-form]');
-        if (heroForm) {
-            heroForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var www = heroForm.querySelector('[name="www"]').value.trim();
-                if (www && !/^https?:\/\//i.test(www)) www = 'https://' + www;
-                quiz.querySelector('[data-form="lead"] [name="www"]').value = www;
-                document.getElementById('test').scrollIntoView({ behavior: 'smooth' });
-                restart({ quiz_source: 'hero', has_www: www !== '' });
-            });
-        }
+        // Litery przy odpowiedziach działają jako skróty klawiszowe.
+        document.addEventListener('keydown', function (e) {
+            if (steps.questions.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+            if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+            var n = 'abcd'.indexOf(e.key.toLowerCase());
+            var opts = elOptions.querySelectorAll('.quiz-option');
+            if (n > -1 && n < opts.length) { e.preventDefault(); answer(n); }
+        });
+
+        // Z wyniku testu do formularza: wynik trafia do opisu sytuacji.
+        var toForm = quiz.querySelector('[data-quiz-to-form]');
+        if (toForm) toForm.addEventListener('click', function () {
+            var area = document.querySelector('[data-form="contact"] [name="problem"]');
+            var title = quiz.querySelector('[data-result-title]').textContent;
+            if (area && !area.value.trim()) area.value = 'Wynik testu: ' + title + '. ';
+            track('quiz_to_form', { quiz_result: quiz.querySelector('[data-result-field]').value });
+        });
+
         quiz.querySelector('[data-quiz-restart]').addEventListener('click', function () { restart({ quiz_restart: true }); });
         quiz.querySelector('[data-quiz-back]').addEventListener('click', function () {
             if (current > 0) { current -= 1; render(); }
@@ -507,29 +601,65 @@
     document.querySelectorAll('[data-form]').forEach(function (form) {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            var valid = true;
-            form.querySelectorAll('[required]').forEach(function (field) {
-                var ok = field.type === 'checkbox' ? field.checked : field.value.trim() !== '' && field.checkValidity();
-                field.setAttribute('aria-invalid', ok ? 'false' : 'true');
-                if (!ok && valid) { field.focus(); valid = false; }
-            });
-            if (!valid) return;
-            var kind = form.getAttribute('data-form');
-            if (kind === 'lead') {
-                track('lead_submit', { quiz_result: form.querySelector('[name="wynik"]').value });
-            } else if (kind === 'contact') {
-                var topics = Array.prototype.map.call(form.querySelectorAll('[name="temat"]:checked'), function (el) { return el.value; });
-                track('contact_submit', { topic: topics.join(',') || 'nie-wiem', channel: form.querySelector('[name="kanal"]:checked').value });
-                var name = form.querySelector('[name="imie"]').value.trim();
-                form.querySelectorAll('.step, .stepper-bar').forEach(function (el) { el.hidden = true; });
-                form.querySelector('[data-step-count]').textContent = 'Wysłane';
-                form.querySelector('[data-form-done]').hidden = false;
-                form.querySelector('[data-done-title]').textContent = 'Dzięki, ' + name + '. Mam to.';
-                form.querySelector('[data-done-title]').focus();
-                return;
-            }
-            form.querySelectorAll('input, select, textarea, button').forEach(function (el) { el.disabled = true; });
-            form.querySelector('.form-ok').hidden = false;
+            var scope = form.querySelector('.step.is-active') || form;
+            if (!checkFields(scope)) return;
+            var submit = form.querySelector('[type="submit"]');
+            if (submit.disabled) return;
+            submit.disabled = true;
+            submit.setAttribute('aria-busy', 'true');
+            submit.dataset.label = submit.textContent;
+            submit.textContent = 'Wysyłam...';
+            // W motywie tu będzie wysyłka do admin-post.php. W prototypie krótka pauza pokazuje stan wysyłania.
+            setTimeout(function () { finishSubmit(form); }, 700);
         });
     });
+
+    function finishSubmit(form) {
+        var kind = form.getAttribute('data-form');
+        if (kind === 'lead') {
+            track('lead_submit', { quiz_result: form.querySelector('[name="wynik"]').value });
+        } else if (kind === 'contact') {
+            var topics = Array.prototype.map.call(form.querySelectorAll('[name="temat"]:checked'), function (el) { return el.value; });
+            track('contact_submit', { topic: topics.join(',') || 'nie-wiem', channel: form.querySelector('[name="kanal"]:checked').value });
+            var name = form.querySelector('[name="imie"]').value.trim();
+            form.querySelectorAll('.step, .stepper-bar').forEach(function (el) { el.hidden = true; });
+            form.querySelector('[data-step-count]').textContent = 'Wysłane';
+            form.querySelector('[data-form-done]').hidden = false;
+            form.querySelector('[data-done-title]').textContent = 'Dzięki, ' + name + '. Mam to.';
+            form.querySelector('[data-done-title]').focus();
+            return;
+        }
+        form.querySelectorAll('input, select, textarea, button').forEach(function (el) { el.disabled = true; });
+        var sub = form.querySelector('[type="submit"]');
+        sub.textContent = sub.dataset.label;
+        sub.removeAttribute('aria-busy');
+        form.querySelector('.form-ok').hidden = false;
+    }
+
+    // Pasek wskaźników: przycisk pauzy.
+    var tickerBtn = document.querySelector('[data-ticker-toggle]');
+    if (tickerBtn) {
+        if (reduceMotion) tickerBtn.hidden = true;
+        tickerBtn.addEventListener('click', function () {
+            var t = tickerBtn.parentNode;
+            var held = t.classList.toggle('is-held');
+            tickerBtn.setAttribute('aria-label', held ? 'Wznów przewijany pasek' : 'Zatrzymaj przewijany pasek');
+            tickerBtn.innerHTML = held
+                ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>'
+                : '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+        });
+    }
+
+    // Logotypy: najpierw 12, reszta po kliknięciu.
+    var logosBtn = document.querySelector('[data-logos-toggle]');
+    if (logosBtn) {
+        var logosList = logosBtn.closest('.logos');
+        logosList.classList.add('is-collapsed');
+        var logosLabel = logosBtn.textContent;
+        logosBtn.addEventListener('click', function () {
+            var open = logosList.classList.toggle('is-collapsed') === false;
+            logosBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            logosBtn.textContent = open ? 'Pokaż mniej' : logosLabel;
+        });
+    }
 })();

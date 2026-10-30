@@ -59,13 +59,11 @@
                 </ul>
             </div>
             <div class="stage" role="img" aria-label="Ilustracja diagnozy: mapa drogi klienta z zaznaczonym wąskim gardłem i wykres, na którym wydatki rosną, przychód stoi, a po naprawie znowu rośnie.">
-                <div class="card card-chart">
-                    <div class="card-head">
-                        <span class="label">Diagnoza</span>
-                        <ul class="chart-legend">
-                            <li><i class="dot dot-spend"></i>Wydatki</li>
-                            <li><i class="dot dot-revenue"></i>Przychód</li>
-                        </ul>
+                <div class="card card-chart gx">
+                    <div class="card-head"><span class="gx-title">Diagnoza</span><span class="chip">ilustracja</span></div>
+                    <div class="gx-tiles">
+                        <div class="gx-tile gx-spend"><span>Wydatki na marketing</span><b>rosną</b></div>
+                        <div class="gx-tile gx-rev"><span>Przychód</span><b>stoi</b></div>
                     </div>
                     <svg class="chart" viewBox="0 0 640 300" aria-hidden="true">
                         <g class="chart-grid">
@@ -75,13 +73,12 @@
                             <line x1="0" y1="270" x2="640" y2="270"/>
                         </g>
                         <polygon class="chart-gap" points="214,182 300,140 400,100 400,166 300,170"/>
-                        <polyline class="chart-spend" points="10,262 110,226 214,182 300,140 400,100 500,88 630,80"/>
-                        <polyline class="chart-revenue" points="10,250 110,214 214,182 300,170 400,166 470,118 560,72 630,40"/>
+                        <polyline class="chart-spend draw" pathLength="1" points="10,262 110,226 214,182 300,140 400,100 500,88 630,80"/>
+                        <polyline class="chart-revenue draw" pathLength="1" points="10,250 110,214 214,182 300,170 400,166 470,118 560,72 630,40"/>
                         <line class="chart-fix" x1="400" y1="30" x2="400" y2="285"/>
                         <text class="chart-label" x="392" y="46" text-anchor="end">naprawa</text>
                         <text class="chart-note" x="300" y="200">tu uciekają pieniądze</text>
-                        <g class="chart-mark"><circle class="pulse" cx="400" cy="166" r="14"/><circle cx="400" cy="166" r="5"/></g>
-                        <rect class="chart-cover" x="0" y="0" width="640" height="300"/>
+                        <g class="chart-mark"><circle class="pulse" cx="400" cy="166" r="14"/><circle cx="400" cy="166" r="6"/></g>
                     </svg>
                 </div>
 
@@ -346,7 +343,7 @@
     <div class="wrap how-grid">
         <div class="how-side">
             <h2>Jak <span class="accent">pracuję</span></h2>
-            <div class="how-card" aria-hidden="true">
+            <div class="how-card gx" aria-hidden="true">
                 <div class="card-head"><span class="label" data-how-count>Krok 01 / 04</span><span class="chip">ilustracja</span></div>
                 <div class="how-panels">
                     <div class="how-panel is-active" data-panel="0">
@@ -374,8 +371,8 @@
                         <p class="panel-title">Co dalej z budżetem?</p>
                         <svg class="mini-chart" viewBox="0 0 400 180">
                             <line class="mc-grid" x1="0" y1="45" x2="400" y2="45"/><line class="mc-grid" x1="0" y1="90" x2="400" y2="90"/><line class="mc-grid" x1="0" y1="135" x2="400" y2="135"/>
-                            <polyline class="mc-up" points="10,150 90,130 170,112 250,80 330,48 390,22"/>
-                            <polyline class="mc-down" points="10,120 90,124 170,132 250,140"/>
+                            <polyline class="mc-up draw" pathLength="1" points="10,150 90,130 170,112 250,80 330,48 390,22"/>
+                            <polyline class="mc-down draw" pathLength="1" points="10,120 90,124 170,132 250,140"/>
                             <text class="mc-label mc-label-up" x="380" y="52" text-anchor="end">działa: dokładam</text>
                             <text class="mc-label" x="262" y="160">nie działa: wyłączam</text>
                             <g class="mc-x"><line x1="244" y1="134" x2="256" y2="146"/><line x1="256" y1="134" x2="244" y2="146"/></g>
@@ -417,12 +414,15 @@
             <p class="section-lead">Od pierwszej wiadomości do stałej pracy. Wiesz, co się wydarzy na każdym etapie.</p>
         </div>
         <!-- CZEKA: opis współpracy od Tomasza (etapy, rytm pracy, raporty, kanały kontaktu). -->
-        <ol class="coop">
-            <li class="coop-step"><span class="coop-num">1</span><p class="coop-title">Etap do opisania</p><p class="coop-text">Miejsce na opis.</p></li>
-            <li class="coop-step"><span class="coop-num">2</span><p class="coop-title">Etap do opisania</p><p class="coop-text">Miejsce na opis.</p></li>
-            <li class="coop-step"><span class="coop-num">3</span><p class="coop-title">Etap do opisania</p><p class="coop-text">Miejsce na opis.</p></li>
-            <li class="coop-step"><span class="coop-num">4</span><p class="coop-title">Etap do opisania</p><p class="coop-text">Miejsce na opis.</p></li>
-        </ol>
+        <div class="tl" data-tl>
+            <div class="tl-rail" aria-hidden="true"><span class="tl-fill" data-tl-fill></span><span class="tl-dot" data-tl-dot></span></div>
+            <ol class="tl-steps">
+                <li class="tl-step"><span class="tl-num">01</span><div class="tl-body"><p class="tl-title">Etap do opisania</p><p class="tl-text">Miejsce na opis tego etapu.</p></div></li>
+                <li class="tl-step"><span class="tl-num">02</span><div class="tl-body"><p class="tl-title">Etap do opisania</p><p class="tl-text">Miejsce na opis tego etapu.</p></div></li>
+                <li class="tl-step"><span class="tl-num">03</span><div class="tl-body"><p class="tl-title">Etap do opisania</p><p class="tl-text">Miejsce na opis tego etapu.</p></div></li>
+                <li class="tl-step"><span class="tl-num">04</span><div class="tl-body"><p class="tl-title">Etap do opisania</p><p class="tl-text">Miejsce na opis tego etapu.</p></div></li>
+            </ol>
+        </div>
     </div>
 </section>
 

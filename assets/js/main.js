@@ -135,6 +135,30 @@
         }
     }
 
+    // Oś czasu współpracy: kropka i linia podążają za przewijaniem, etapy zapalają się, gdy kropka do nich dojdzie.
+    var tl = document.querySelector('[data-tl]');
+    if (tl) {
+        var tlFill = tl.querySelector('[data-tl-fill]');
+        var tlDot = tl.querySelector('[data-tl-dot]');
+        var tlRail = tl.querySelector('.tl-rail');
+        var tlSteps = tl.querySelectorAll('.tl-step');
+        var tlTicking = false;
+        var tlUpdate = function () {
+            tlTicking = false;
+            var r = tlRail.getBoundingClientRect();
+            var p = Math.min(Math.max((window.innerHeight * 0.6 - r.top) / r.height, 0), 1);
+            tlFill.style.height = (p * 100) + '%';
+            tlDot.style.top = (p * 100) + '%';
+            var dotY = r.top + p * r.height;
+            tlSteps.forEach(function (st) { st.classList.toggle('is-on', st.getBoundingClientRect().top + 24 <= dotY); });
+        };
+        window.addEventListener('scroll', function () {
+            if (!tlTicking) { tlTicking = true; requestAnimationFrame(tlUpdate); }
+        }, { passive: true });
+        window.addEventListener('resize', tlUpdate);
+        tlUpdate();
+    }
+
     // Menu mobilne
     var toggle = document.querySelector('.nav-toggle');
     var nav = document.getElementById('nav');

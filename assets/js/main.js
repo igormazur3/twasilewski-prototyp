@@ -8,8 +8,8 @@
         window.dataLayer.push(Object.assign({ event: event }, params || {}));
     }
 
-    // WhatsApp: numer w formacie międzynarodowym bez plusa, np. 48500600700. DO UZUPEŁNIENIA.
-    var WA_NUMBER = '';
+    // WhatsApp: numer w formacie międzynarodowym bez plusa.
+    var WA_NUMBER = '48736872871';
     var WA_TEXT = 'Dzień dobry, piszę ze strony twasilewski.pl.';
     document.querySelectorAll('[data-wa]').forEach(function (a) {
         if (WA_NUMBER) a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(WA_TEXT);

@@ -8,6 +8,26 @@
         window.dataLayer.push(Object.assign({ event: event }, params || {}));
     }
 
+    // WhatsApp: numer w formacie międzynarodowym bez plusa, np. 48500600700. DO UZUPEŁNIENIA.
+    var WA_NUMBER = '';
+    var WA_TEXT = 'Dzień dobry, piszę ze strony twasilewski.pl.';
+    document.querySelectorAll('[data-wa]').forEach(function (a) {
+        if (WA_NUMBER) a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(WA_TEXT);
+        a.addEventListener('click', function () {
+            var place = a.closest('header, .hero, .contact, .mobile-bar, footer');
+            track('whatsapp_click', { wa_place: place ? place.className.split(' ')[0] : 'inne' });
+        });
+    });
+
+    // Przycisk „Zapytaj o to” w karcie usługi ustawia temat w formularzu kontaktowym.
+    var topicSelect = document.querySelector('[data-topic-select]');
+    document.querySelectorAll('[data-topic]').forEach(function (a) {
+        a.addEventListener('click', function () {
+            if (topicSelect) topicSelect.value = a.getAttribute('data-topic');
+            track('service_ask', { service: a.getAttribute('data-topic') });
+        });
+    });
+
     // Menu mobilne
     var toggle = document.querySelector('.nav-toggle');
     var nav = document.getElementById('nav');
@@ -364,12 +384,15 @@
                 if (!ok && valid) { field.focus(); valid = false; }
             });
             if (!valid) return;
-            if (form.getAttribute('data-form') === 'lead') {
+            var kind = form.getAttribute('data-form');
+            if (kind === 'lead') {
                 track('lead_submit', { quiz_result: form.querySelector('[name="wynik"]').value });
+            } else if (kind === 'contact') {
+                track('contact_submit', { topic: form.querySelector('[name="temat"]').value || 'nie-wiem' });
             } else {
                 track('video_request');
             }
-            form.querySelectorAll('input, textarea, button').forEach(function (el) { el.disabled = true; });
+            form.querySelectorAll('input, select, textarea, button').forEach(function (el) { el.disabled = true; });
             form.querySelector('.form-ok').hidden = false;
         });
     });

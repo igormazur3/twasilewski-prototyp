@@ -12,18 +12,21 @@
 <body>
 <a class="skip" href="#tresc">Przejdź do treści</a>
 
+<!-- DO UZUPEŁNIENIA: numer WhatsApp w stałej WA_NUMBER w assets/js/main.js. Linki z atrybutem data-wa biorą go stamtąd. -->
 <header class="site-header">
     <div class="wrap header-inner">
         <a class="logo" href="/" aria-label="twasilewski.pl, strona główna">twasilewski<b>.pl</b></a>
         <nav class="nav" id="nav" aria-label="Menu główne">
             <a href="#uslugi">Co robię</a>
             <a href="#jak">Jak pracuję</a>
-            <a href="#test">Test</a>
+            <a href="#o-mnie">O mnie</a>
             <a href="#pytania">Pytania</a>
             <a href="/blog/">Blog</a>
         </nav>
-        <a class="btn btn-ghost btn-sm header-contact" href="#nagranie">Kontakt</a>
-        <a class="btn btn-primary btn-sm" href="#test">Zrób test</a>
+        <a class="header-wa" href="https://wa.me/48000000000" data-wa target="_blank" rel="noopener">
+            <svg class="wa-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>WhatsApp</span>
+        </a>
+        <a class="btn btn-primary btn-sm" href="#kontakt">Opisz sytuację</a>
         <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false">
             <span class="sr">Menu</span>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -41,21 +44,18 @@
                 <p class="label">Tomasz Wasilewski, partner od wzrostu firm</p>
                 <h1 class="rotator" data-rotator><span class="rot" data-rot-a>Wydajesz więcej,</span><br> <span class="rot" data-rot-b>a firma <span class="accent">nie rośnie?</span></span></h1>
                 <p class="lead">Znajdę, gdzie Twój marketing gubi pieniądze i klientów: w reklamach, na stronie, w mailach albo w sprzedaży. I naprawię to.</p>
-
-                <form class="url-form" action="#test" data-hero-form>
-                    <label class="sr" for="hero-www">Adres Twojej strony</label>
-                    <svg class="url-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                    <input id="hero-www" type="text" name="www" inputmode="url" autocomplete="url" placeholder="Wpisz adres swojej strony">
-                    <button class="btn btn-primary" type="submit">Sprawdź, gdzie tracisz
+                <div class="hero-actions">
+                    <a class="btn btn-primary btn-lg" href="#kontakt">Opisz swoją sytuację
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                    </button>
-                </form>
-                <ul class="micro">
-                    <li>2 minuty</li><li>Wynik od razu</li><li>Bez podawania maila</li>
+                    </a>
+                    <a class="btn btn-wa btn-lg" href="https://wa.me/48000000000" data-wa target="_blank" rel="noopener"><svg class="wa-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napisz na WhatsApp</a>
+                </div>
+                <ul class="trust">
+                    <li><i></i>Pracujesz bezpośrednio ze mną, bez opiekunów i juniorów</li>
+                    <li><i></i>7+ lat w marketingu, 50+ audytów kont reklamowych i analityki</li>
+                    <li><i class="i-alt"></i><span>Nie wiesz, od czego zacząć? <a href="#test">Zrób 2-minutowy test</a></span></li>
                 </ul>
-                <a class="hero-alt" href="#nagranie">Wolisz opisać problem? Odpowiem nagraniem</a>
             </div>
-
             <div class="stage" role="img" aria-label="Ilustracja diagnozy: mapa drogi klienta z zaznaczonym wąskim gardłem i wykres, na którym wydatki rosną, przychód stoi, a po naprawie znowu rośnie.">
                 <div class="card card-chart">
                     <div class="card-head">
@@ -130,22 +130,44 @@
     </div>
 </div>
 
-<section class="section" id="sytuacje">
+<section class="section" id="dla-kogo">
     <div class="wrap">
         <div class="sec-head">
-            <h2>Brzmi <span class="accent">znajomo?</span></h2>
-            <p class="section-lead">Jeśli łapiesz się na którymś z tych zdań, ta strona jest dla Ciebie. Za każdym stoi inna przyczyna. Od jej znalezienia zaczynam.</p>
+            <h2>Rozpoznajesz <span class="accent">się?</span></h2>
+            <p class="section-lead">Jeśli któraś z tych sytuacji jest Twoja, to dobry moment, żeby porozmawiać.</p>
         </div>
-        <ol class="cells quotes">
-            <li>„Wydajemy coraz więcej na reklamy, a sprzedaż stoi w miejscu.”</li>
-            <li>„Nie wiemy, co nam naprawdę sprzedaje.”</li>
-            <li>„Ruch jest, zapytania są, a klientów mało.”</li>
-            <li>„Leady przychodzą i giną. Nikt ich porządnie nie obsługuje.”</li>
-            <li>„Mamy firmę od reklam, kogoś od strony i kogoś od maili. Za wynik nie odpowiada nikt.”</li>
-            <li>„Zespół robi ręcznie rzeczy, które dawno powinny dziać się same.”</li>
-            <li class="quotes-cta"><a href="#test">Sprawdź, które dotyczy Ciebie <span aria-hidden="true">→</span></a></li>
-            <li class="quotes-cta quotes-cta-alt"><a href="#nagranie">Twojego zdania tu nie ma? Opisz je <span aria-hidden="true">→</span></a></li>
-        </ol>
+        <div class="persona-grid">
+            <article class="persona">
+                <span class="persona-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg></span>
+                <h3>Właściciele i prezesi</h3>
+                <p class="persona-k">Problem</p>
+                <p class="persona-q">„Wydaję na marketing coraz więcej i nie wiem, co z tego mam.”</p>
+                <div class="persona-fx">
+                    <p class="persona-k">Efekt</p>
+                    <p>Wiesz, które działania przynoszą klientów, a które tylko kosztują.</p>
+                </div>
+            </article>
+            <article class="persona">
+                <span class="persona-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+                <h3>Szefowie marketingu</h3>
+                <p class="persona-k">Problem</p>
+                <p class="persona-q">„Mam firmę od reklam, kogoś od strony i kogoś od maili. Za wynik odpowiadam ja, a całości nie widzi nikt.”</p>
+                <div class="persona-fx">
+                    <p class="persona-k">Efekt</p>
+                    <p>Masz jedną osobę, która widzi cały lejek i pomaga Ci go poukładać.</p>
+                </div>
+            </article>
+            <article class="persona">
+                <span class="persona-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                <h3>Szefowie sprzedaży</h3>
+                <p class="persona-k">Problem</p>
+                <p class="persona-q">„Leady przychodzą, ale są słabe albo giną po drodze.”</p>
+                <div class="persona-fx">
+                    <p class="persona-k">Efekt</p>
+                    <p>Zapytania trafiają do właściwych ludzi i są obsłużone na czas.</p>
+                </div>
+            </article>
+        </div>
     </div>
 </section>
 
@@ -218,58 +240,92 @@
             <p class="section-lead">Nie jestem ekspertem od wszystkiego i nie udaję. W reklamach i danych jestem specjalistą. W pozostałych obszarach wiem dość, żeby znaleźć problem, wskazać dobre rozwiązanie i dopilnować, żeby zadziałało.</p>
         </div>
 
-        <div class="cells featured">
-            <a class="feat" href="/google-ads/">
+        <div class="svc-grid">
+            <article class="svc-card">
                 <span class="tag">Robię sam</span>
-                <h3>Reklamy w Google i na Facebooku</h3>
-                <p>Płacisz za kliknięcia ludzi, którzy nigdy nie kupią? Odcinam to i przenoszę budżet tam, gdzie są klienci.</p>
-                <span class="more">Google Ads, Meta Ads <span aria-hidden="true">→</span></span>
-            </a>
-            <a class="feat" href="/analityka/">
+                <h3><a href="/google-ads/">Google Ads</a></h3>
+                <p class="svc-for"><b>Dla:</b> firm, które płacą za kliknięcia i chcą z nich sprzedaży</p>
+                <ul class="svc-checks"><li>Budżet idzie tam, gdzie są klienci, a nie same kliknięcia</li><li>Kampanie ustawione pod sprzedaż i wartościowe zapytania</li><li>Wiesz, co wyłączyć, a co skalować</li></ul>
+                <details class="svc-more">
+                    <summary>Co dokładnie robię</summary>
+                    <ul><li>Kampanie w wyszukiwarce i produktowe</li><li>Performance Max</li><li>Remarketing</li><li>Audyt konta reklamowego</li></ul>
+                </details>
+                <a class="btn btn-ghost btn-block" href="#kontakt" data-topic="google-ads">Zapytaj o to</a>
+            </article>
+            <article class="svc-card">
                 <span class="tag">Robię sam</span>
-                <h3>Dane, którym można ufać</h3>
-                <p>Decyzje na podstawie liczb, które się nie zgadzają, to zgadywanie. Ustawiam pomiar tak, żebyś wiedział, co naprawdę sprzedaje.</p>
-                <span class="more">Analityka i raporty <span aria-hidden="true">→</span></span>
-            </a>
-        </div>
-
-        <div class="cells svc">
-            <div class="svc-col">
-                <h3>Reklamy</h3>
-                <ul>
-                    <li><a href="/google-ads/">Google Ads <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/meta-ads/">Meta Ads <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/google-ads/">Kampanie produktowe i Performance Max <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/meta-ads/">Remarketing dynamiczny <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/google-ads/">Audyt konta reklamowego <span aria-hidden="true">→</span></a></li>
-                </ul>
-            </div>
-            <div class="svc-col">
-                <h3>Dane i analityka</h3>
-                <ul>
-                    <li><a href="/analityka/">GA4 od podstaw <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/analityka/">GTM i server-side <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/analityka/">Śledzenie konwersji <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/analityka/">Raporty w Looker Studio <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/analityka/">Audyt analityki i plan naprawczy <span aria-hidden="true">→</span></a></li>
-                </ul>
-            </div>
-            <div class="svc-col">
-                <h3>Strona i sprzedaż <span class="tag tag-soft">Prowadzę wdrożenie</span></h3>
-                <ul>
-                    <li><a href="/strona-i-konwersja/">Strona, która zamienia ruch w klientów <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/mailing-i-automatyzacje/">Maile i automatyzacje <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/proces-sprzedazy/">Droga od zapytania do umowy <span aria-hidden="true">→</span></a></li>
-                    <li><a href="/ai-w-firmie/">AI i automaty w powtarzalnej pracy <span aria-hidden="true">→</span></a></li>
-                </ul>
-            </div>
-            <div class="svc-foot">
-                <div>
-                    <p class="svc-foot-title">Nie wiesz, czego potrzebujesz?</p>
-                    <p class="svc-foot-text">2 minuty, wynik od razu.</p>
+                <h3><a href="/meta-ads/">Meta Ads</a></h3>
+                <p class="svc-for"><b>Dla:</b> firm, którym reklamy na Facebooku i Instagramie dają ruch, ale mało sprzedaży</p>
+                <ul class="svc-checks"><li>Reklamy trafiają do ludzi, którzy mogą kupić</li><li>Remarketing przypomina o Tobie tym, którzy byli blisko zakupu</li><li>Widzisz, które reklamy naprawdę sprzedają</li></ul>
+                <details class="svc-more">
+                    <summary>Co dokładnie robię</summary>
+                    <ul><li>Kampanie sprzedażowe i na zapytania</li><li>Remarketing dynamiczny</li><li>Audyt konta reklamowego</li></ul>
+                </details>
+                <a class="btn btn-ghost btn-block" href="#kontakt" data-topic="meta-ads">Zapytaj o to</a>
+            </article>
+            <article class="svc-card">
+                <span class="tag">Robię sam</span>
+                <h3><a href="/analityka/">Analityka i dane</a></h3>
+                <p class="svc-for"><b>Dla:</b> firm, w których liczby w panelach nie zgadzają się ze sprzedażą</p>
+                <ul class="svc-checks"><li>Wiesz, co naprawdę sprzedaje</li><li>Konwersje mierzone poprawnie</li><li>Raport, który rozumiesz bez tłumacza</li></ul>
+                <details class="svc-more">
+                    <summary>Co dokładnie robię</summary>
+                    <ul><li>GA4 od podstaw</li><li>GTM i server-side</li><li>Śledzenie konwersji</li><li>Raporty w Looker Studio</li><li>Audyt analityki i plan naprawczy</li></ul>
+                </details>
+                <a class="btn btn-ghost btn-block" href="#kontakt" data-topic="analityka">Zapytaj o to</a>
+            </article>
+            <article class="svc-card">
+                <span class="tag tag-soft">Prowadzę wdrożenie</span>
+                <h3><a href="/strona-i-konwersja/">Strona i konwersja</a></h3>
+                <p class="svc-for"><b>Dla:</b> firm, do których ruch przychodzi, a zapytań jest mało</p>
+                <ul class="svc-checks"><li>Wiesz, w którym miejscu ludzie odpadają</li><li>Zmiany na stronie sprawdzane na danych, a nie na wyczucie</li><li>Cel: więcej osób zostawia kontakt</li></ul>
+                <details class="svc-more">
+                    <summary>Co dokładnie robię</summary>
+                    <ul><li>Analiza drogi użytkownika na stronie</li><li>Testy zmian</li><li>Landing pages pod kampanie</li></ul>
+                </details>
+                <a class="btn btn-ghost btn-block" href="#kontakt" data-topic="strona">Zapytaj o to</a>
+            </article>
+            <article class="svc-card">
+                <span class="tag tag-soft">Prowadzę wdrożenie</span>
+                <h3><a href="/mailing-i-automatyzacje/">Maile i automatyzacje</a></h3>
+                <p class="svc-for"><b>Dla:</b> firm z bazą kontaktów, z którą nic się nie dzieje</p>
+                <ul class="svc-checks"><li>Wracasz do ludzi, którzy już Cię znają</li><li>Wiadomości wysyłają się same, w dobrym momencie</li><li>Baza kontaktów zaczyna pracować na sprzedaż</li></ul>
+                <details class="svc-more">
+                    <summary>Co dokładnie robię</summary>
+                    <ul><li>Sekwencje powitalne i sprzedażowe</li><li>Newslettery</li><li>Automatyczne ścieżki dla leadów</li></ul>
+                </details>
+                <a class="btn btn-ghost btn-block" href="#kontakt" data-topic="maile">Zapytaj o to</a>
+            </article>
+            <article class="svc-card">
+                <span class="tag tag-soft">Prowadzę wdrożenie</span>
+                <h3><a href="/proces-sprzedazy/">Proces sprzedaży</a></h3>
+                <p class="svc-for"><b>Dla:</b> firm, w których zapytania giną albo czekają za długo</p>
+                <ul class="svc-checks"><li>Żadne zapytanie nie ginie po drodze</li><li>Wiadomo, kto, kiedy i jak odpowiada</li><li>Follow-upy nie zależą od czyjejś pamięci</li></ul>
+                <details class="svc-more">
+                    <summary>Co dokładnie robię</summary>
+                    <ul><li>Mapa drogi od zapytania do umowy</li><li>Zasady obsługi i follow-upów</li><li>Automatyczne przypomnienia</li></ul>
+                </details>
+                <a class="btn btn-ghost btn-block" href="#kontakt" data-topic="sprzedaz">Zapytaj o to</a>
+            </article>
+            <article class="svc-card">
+                <span class="tag tag-soft">Prowadzę wdrożenie</span>
+                <h3><a href="/ai-w-firmie/">AI w firmie</a></h3>
+                <p class="svc-for"><b>Dla:</b> zespołów, które robią ręcznie powtarzalną pracę</p>
+                <ul class="svc-checks"><li>Wiesz, które zadania warto zautomatyzować</li><li>Automaty przejmują powtarzalną robotę</li><li>Zespół ma czas na to, co wymaga człowieka</li></ul>
+                <details class="svc-more">
+                    <summary>Co dokładnie robię</summary>
+                    <ul><li>Przegląd procesów w marketingu i sprzedaży</li><li>Wybór narzędzi</li><li>Pomoc we wdrożeniu</li></ul>
+                </details>
+                <a class="btn btn-ghost btn-block" href="#kontakt" data-topic="ai">Zapytaj o to</a>
+            </article>
+            <article class="svc-card svc-custom">
+                <h3>Nie wiesz, od czego zacząć?</h3>
+                <p>Opisz sytuację albo zrób 2-minutowy test. Zwykle po kilku zdaniach wiadomo, gdzie szukać najpierw.</p>
+                <div class="svc-custom-actions">
+                    <a class="btn btn-primary" href="#kontakt">Opisz sytuację</a>
+                    <a class="btn btn-ghost" href="#test">Zrób test</a>
                 </div>
-                <a class="btn btn-primary btn-sm" href="#test">Zrób test</a>
-            </div>
+            </article>
         </div>
     </div>
 </section>
@@ -339,6 +395,32 @@
                 <p>Kiedy coś przynosi klientów, zwiększam skalę. Kiedy nie przynosi, wyłączam i szukam dalej.</p>
             </li>
         </ol>
+    </div>
+</section>
+
+<section class="section" id="o-mnie">
+    <div class="wrap">
+        <div class="about">
+            <div class="about-card">
+                <div class="about-mono" aria-hidden="true">TW</div>
+                <div>
+                    <p class="label">Kto stoi za twasilewski.pl</p>
+                    <h2>Tomasz Wasilewski</h2>
+                    <p class="about-role">Partner od wzrostu firm. Reklamy, dane, strona i sprzedaż w jednym ręku.</p>
+                </div>
+                <ul class="about-list">
+                    <li>7+ lat doświadczenia w marketingu</li>
+                    <li>50+ audytów kont reklamowych i analityki</li>
+                    <li>Reklamy i analitykę robię sam, bez podwykonawców</li>
+                    <li>Pracowałem z firmami z wielu branż: od gastronomii po oprogramowanie</li>
+                </ul>
+                <ul class="about-tags">
+                    <li>Google Ads</li><li>Meta Ads</li><li>GA4</li><li>GTM i server-side</li><li>Looker Studio</li><li>Automatyzacje</li>
+                </ul>
+                <a class="about-link" href="https://www.linkedin.com/in/tomasz-wasilewski-172aa1242/" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>Tomasz Wasilewski na LinkedIn</a>
+            </div>
+            <p class="about-quote">Zaczynam od pytania, gdzie firma traci pieniądze, a nie od tego, jaką kampanię <span class="accent">Ci sprzedać</span>.</p>
+        </div>
     </div>
 </section>
 
@@ -416,6 +498,10 @@
                 <p>Nie. Mogę spojrzeć na całość i pokazać, gdzie leży problem. Co z tym zrobisz dalej, zdecydujesz sam.</p>
             </details>
             <details>
+                <summary>Co się dzieje po wysłaniu formularza?</summary>
+                <p>Czytam Twój opis i nagrywam krótkie wideo, w którym mówię, od czego bym zaczął. Jeśli wolisz, napisz od razu na WhatsApp.</p>
+            </details>
+            <details>
                 <summary>Co się dzieje po teście?</summary>
                 <p>Wynik widzisz od razu na ekranie. Jeśli zostawisz e-mail, wyślę Ci pełne omówienie: co sprawdzić w pierwszej kolejności i jak to naprawić.</p>
             </details>
@@ -423,21 +509,47 @@
     </div>
 </section>
 
-<section class="section cta" id="nagranie">
-    <div class="wrap split">
-        <div>
-            <h2>Wolisz od razu <span class="accent">konkret?</span></h2>
-            <p class="section-lead">Opisz w dwóch zdaniach, co Cię boli. Odpowiem krótkim nagraniem wideo, w którym powiem, od czego bym zaczął.</p>
-            <ul class="contact-list">
-                <li><a href="mailto:kontakt@twasilewski.pl">kontakt@twasilewski.pl</a></li>
-                <li><a href="https://www.linkedin.com/in/tomasz-wasilewski-172aa1242/" rel="noopener">LinkedIn</a></li>
-            </ul>
+<section class="section cta" id="kontakt">
+    <div class="wrap contact">
+        <div class="contact-copy">
+            <h2>Opisz swoją <span class="accent">sytuację</span></h2>
+            <p class="section-lead">Kilka zdań wystarczy. Odpowiem krótkim nagraniem wideo, w którym powiem, od czego bym zaczął.</p>
+            <div class="contact-alt">
+                <p class="label">Wolisz szybciej?</p>
+                <a class="btn btn-wa" href="https://wa.me/48000000000" data-wa target="_blank" rel="noopener"><svg class="wa-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napisz na WhatsApp</a>
+                <ul class="contact-list">
+                    <li><a href="mailto:kontakt@twasilewski.pl">kontakt@twasilewski.pl</a></li>
+                    <li><a href="https://www.linkedin.com/in/tomasz-wasilewski-172aa1242/" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
         </div>
-        <form class="form form-card" data-form="video" novalidate>
-            <label>Co Cię boli?<textarea name="problem" rows="4" required placeholder="Np. zapytań jest dużo, ale mało z nich kończy się sprzedażą."></textarea></label>
-            <label>E-mail<input type="email" name="email" required autocomplete="email"></label>
+
+        <form class="form form-frame" data-form="contact" novalidate>
+            <p class="form-head">Zapytaj o współpracę</p>
+            <div class="form-row">
+                <label>Imię i nazwisko *<input type="text" name="imie" required autocomplete="name" placeholder="Jan Kowalski"></label>
+                <label>Firma *<input type="text" name="firma" required autocomplete="organization" placeholder="Nazwa firmy"></label>
+            </div>
+            <div class="form-row">
+                <label>E-mail *<input type="email" name="email" required autocomplete="email" placeholder="jan@firma.pl"></label>
+                <label><span>Telefon <small>(opcjonalnie)</small></span><input type="tel" name="telefon" autocomplete="tel" placeholder="500 000 000"></label>
+            </div>
+            <label>Czego dotyczy sprawa?
+                <select name="temat" data-topic-select>
+                    <option value="">Nie wiem, pomóż mi to ustalić</option>
+                    <option value="google-ads">Google Ads</option>
+                    <option value="meta-ads">Meta Ads</option>
+                    <option value="analityka">Analityka i dane</option>
+                    <option value="strona">Strona i konwersja</option>
+                    <option value="maile">Maile i automatyzacje</option>
+                    <option value="sprzedaz">Proces sprzedaży</option>
+                    <option value="ai">AI w firmie</option>
+                </select>
+            </label>
+            <label>Co Cię boli? *<textarea name="problem" rows="4" required placeholder="Np. zapytań jest dużo, ale mało z nich kończy się sprzedażą."></textarea></label>
             <label class="check"><input type="checkbox" name="zgoda" required> Zgadzam się na kontakt w sprawie mojego zgłoszenia. <a href="/polityka-prywatnosci/">Polityka prywatności</a></label>
-            <button class="btn btn-primary" type="submit">Wyślij</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Wyślij</button>
+            <p class="form-note">Odpowiadam osobiście, nie automat ani opiekun klienta.</p>
             <p class="form-ok" hidden>Dzięki. Nagram odpowiedź i wyślę ją na podany adres.</p>
         </form>
     </div>
@@ -467,8 +579,9 @@
             <div>
                 <p class="label">Na stronie</p>
                 <ul>
-                    <li><a href="#test">Test: gdzie tracisz</a></li>
                     <li><a href="#jak">Jak pracuję</a></li>
+                    <li><a href="#o-mnie">O mnie</a></li>
+                    <li><a href="#test">Test: gdzie tracisz</a></li>
                     <li><a href="#pytania">Pytania</a></li>
                     <li><a href="/blog/">Blog</a></li>
                 </ul>
@@ -476,9 +589,10 @@
             <div>
                 <p class="label">Kontakt</p>
                 <ul>
+                    <li><a href="https://wa.me/48000000000" data-wa target="_blank" rel="noopener">WhatsApp</a></li>
                     <li><a href="mailto:kontakt@twasilewski.pl">kontakt@twasilewski.pl</a></li>
                     <li><a href="https://www.linkedin.com/in/tomasz-wasilewski-172aa1242/" rel="noopener">LinkedIn</a></li>
-                    <li><a href="#nagranie">Opisz problem</a></li>
+                    <li><a href="#kontakt">Opisz sytuację</a></li>
                 </ul>
             </div>
         </div>
@@ -488,6 +602,11 @@
         </div>
     </div>
 </footer>
+
+<div class="mobile-bar">
+    <a class="btn btn-primary" href="#kontakt">Opisz sytuację</a>
+    <a class="btn btn-wa" href="https://wa.me/48000000000" data-wa target="_blank" rel="noopener" aria-label="Napisz na WhatsApp"><svg class="wa-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>WhatsApp</a>
+</div>
 
 <script src="assets/js/main.js" defer></script>
 </body>

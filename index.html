@@ -368,14 +368,19 @@
                     </div>
                     <div class="how-panel" data-panel="3">
                         <p class="panel-title">Co dalej z budżetem?</p>
-                        <svg class="mini-chart" viewBox="0 0 400 180">
-                            <line class="mc-grid" x1="0" y1="45" x2="400" y2="45"/><line class="mc-grid" x1="0" y1="90" x2="400" y2="90"/><line class="mc-grid" x1="0" y1="135" x2="400" y2="135"/>
-                            <polyline class="mc-up draw" pathLength="1" points="10,150 90,130 170,112 250,80 330,48 390,22"/>
-                            <polyline class="mc-down draw" pathLength="1" points="10,120 90,124 170,132 250,140"/>
-                            <text class="mc-label mc-label-up" x="380" y="52" text-anchor="end">działa: dokładam</text>
-                            <text class="mc-label" x="262" y="160">nie działa: wyłączam</text>
-                            <g class="mc-x"><line x1="244" y1="134" x2="256" y2="146"/><line x1="256" y1="134" x2="244" y2="146"/></g>
-                        </svg>
+                        <div class="bud">
+                            <div class="bud-legend"><span><i class="bud-k-before"></i>Budżet przed</span><span><i class="bud-k-after"></i>Budżet po</span></div>
+                            <div class="bud-row is-up">
+                                <p class="bud-name">Kampania, która sprzedaje <b>dokładam</b></p>
+                                <div class="bud-bar"><i class="bud-before" style="--v:45%"></i></div>
+                                <div class="bud-bar"><i class="bud-after" style="--v:85%"></i></div>
+                            </div>
+                            <div class="bud-row is-off">
+                                <p class="bud-name">Kampania, która nie sprzedaje <b>wyłączam</b></p>
+                                <div class="bud-bar"><i class="bud-before" style="--v:40%"></i></div>
+                                <div class="bud-bar"><i class="bud-after" style="--v:0%"></i></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

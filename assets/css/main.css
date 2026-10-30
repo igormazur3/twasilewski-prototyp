@@ -435,6 +435,29 @@ h3 { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.0313rem
     .how-panel.is-active .funnel-map li:nth-child(4) { transition-delay: .3s; }
 }
 
+/* Krok 4: budżet przed i po */
+.bud { display: grid; gap: 1rem; }
+.bud-legend { display: flex; gap: 1.25rem; font-size: .75rem; color: var(--g-sub, var(--muted)); }
+.bud-legend span { display: flex; align-items: center; gap: .4rem; }
+.bud-legend i { width: 10px; height: 10px; border-radius: 2px; }
+.bud-k-before { background: #BDC1C6; }
+.bud-k-after { background: var(--g-blue, var(--accent)); }
+.bud-name { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .875rem; font-weight: 600; color: var(--g-ink, var(--text)); margin-bottom: .4rem; }
+.bud-name b { font-size: .6875rem; letter-spacing: .07em; text-transform: uppercase; }
+.bud-row.is-up .bud-name b { color: var(--g-green, var(--ok)); }
+.bud-row.is-off .bud-name b { color: var(--g-red, #FF8A8A); }
+.bud-bar { height: 10px; border-radius: 5px; background: #F1F3F4; position: relative; overflow: hidden; }
+.bud-bar + .bud-bar { margin-top: 4px; }
+.bud-bar i { position: absolute; inset: 0 auto 0 0; width: var(--v); border-radius: 5px; }
+.bud-before { background: #BDC1C6; }
+.bud-after { background: var(--g-blue, var(--accent)); }
+.bud-row.is-off .bud-bar:last-child::after { content: "0 zł"; position: absolute; left: 6px; top: 50%; transform: translateY(-50%); font-size: .5625rem; font-weight: 700; color: var(--g-red, #FF8A8A); line-height: 1; }
+@media (prefers-reduced-motion: no-preference) {
+    .how-panel .bud-bar i { transform: scaleX(0); transform-origin: left; transition: transform .9s cubic-bezier(.2, .7, .2, 1) .15s; }
+    .how-panel.is-active .bud-bar i { transform: none; }
+    .how-panel.is-active .bud-after { transition-delay: .6s; }
+}
+
 /* Test */
 .test-wrap { display: grid; gap: 2rem; }
 @media (min-width: 960px) { .test-wrap { grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; } }
